@@ -1,0 +1,4 @@
+*.pyc
+.vscode
+venv/*
+dj_prj/dj_prj/local.py
