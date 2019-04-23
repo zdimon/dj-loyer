@@ -18,3 +18,12 @@ class MainDocuments(models.Model):
     class Meta:
         managed = False
         db_table = 'main_documents'
+
+
+class Person(models.Model):
+    name_ru = models.CharField(max_length=250,blank=True, null=True)
+    name_kz = models.CharField(max_length=250,blank=True, null=True)
+    name_translit = models.CharField(max_length=250,blank=True, null=True)
+    birth = models.DateField(blank=True, null=True)
+    role = models.CharField(max_length=50,blank=True, null=True)
+
