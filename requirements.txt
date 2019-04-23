@@ -1,2 +1,6 @@
 django
 psycopg2==2.7
+djangorestframework
+markdown
+django-filter
+django-cors-headers

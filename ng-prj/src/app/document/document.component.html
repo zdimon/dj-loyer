@@ -1,0 +1,30 @@
+
+  <div style="text-align: center">
+    <button *ngIf="prev" (click)="getPage(offset-10)"  >Previous</button>
+    <button *ngIf="next" (click)="getPage(offset+10)"  >Next</button>
+  </div>
+
+
+  <table class="table table-striped table-sm table-dark table-bordered  table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <th>{{ item.id  }}</th>
+        <td>{{ item.date  }}</td>
+        <td>{{ item.title  }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="text-align: center">
+    <button *ngIf="prev" (click)="getPage(offset-10)"  >Previous</button>
+    <button *ngIf="next" (click)="getPage(offset+10)"  >Next</button>
+  </div>
+
+
