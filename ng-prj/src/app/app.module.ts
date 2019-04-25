@@ -12,6 +12,8 @@ import { DocumentComponent } from './document/document.component';
 import { DocumentService } from './document/document.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationModule } from './registration/registration.module';
+import { LoginService } from './login/login.service';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,13 @@ import { RegistrationModule } from './registration/registration.module';
     AppRoutingModule,
     HttpClientModule,
     RegistrationModule,
+    FormsModule,
     NgbModule.forRoot()
   ],
-  providers: [ DocumentService  ],
+  providers: [
+    DocumentService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
