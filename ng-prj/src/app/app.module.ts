@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { DocumentComponent } from './document/document.component';
 import { DocumentService } from './document/document.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RegistrationModule } from './registration/registration.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RegistrationModule,
     NgbModule.forRoot()
   ],
   providers: [ DocumentService  ],

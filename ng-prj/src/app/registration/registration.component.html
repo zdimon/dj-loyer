@@ -1,0 +1,36 @@
+
+      <form #regForm="ngForm" method="post">
+        <h2 class="text-center">Registration</h2>
+
+        <div *ngIf="password.invalid && (regForm.submitted || password.touched)" class="alert alert-danger">
+          <div *ngIf="password.errors.required"> Password is required. </div>
+          <div *ngIf="confirmpassword.errors.pattern"> Password & Confirm Password does not match.</div>
+        </div>
+
+        <div *ngIf=" confirmpassword.invalid && (regForm.submitted || confirmpassword.touched)" class="alert alert-danger">
+          <div *ngIf="confirmpassword.errors.required"> Confirm password is required. </div>
+          <div *ngIf="confirmpassword.errors.pattern"> Password & Confirm Password does not match.</div>
+        </div>
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" [(ngModel)]="userdata.username"  name="username" required="required">
+        </div>
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="text" class="form-control" [(ngModel)]="userdata.email"  name="email" required="required">
+        </div>
+        <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="userdata.password"  required="required" #password="ngModel">
+
+        </div>
+        <div class="form-group">
+          <label for="">Repeat password</label>
+          <input [(ngModel)]="userdata.repeatpassword" type="password" class="form-control" name="confirmpassword"  required="required" #confirmpassword="ngModel" pattern="{{ password.value }}">
+      </div>
+        <div class="form-group">
+            <button (click)="login()" type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+      </form>
+
