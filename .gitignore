@@ -2,3 +2,4 @@
 .vscode
 venv/*
 dj_prj/dj_prj/local.py
+ng-prj/package-lock.json
