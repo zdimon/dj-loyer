@@ -1,7 +1,8 @@
 import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router"
+import {Router} from "@angular/router";
 import { DbService } from '../db.service';
+import { AlertService } from '../directives/alert.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
               private http_service: LoginService,
               private router: Router,
-              private db: DbService
+              private db: DbService,
+              private alert: AlertService
               ) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
       this.http_service.login(this.username, this.password).subscribe((data: any) => {
          console.log(data);
          if(data['status'] == 1) {
-          alert(data['message']);
+          this.alert.error(data['message']);
 
 
         } else {
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user_token', data.token);
           this.db.setIsLogin('true');
           this.router.navigate(['/index'])
+          this.alert.success(data['message']);
         }
       })
   }

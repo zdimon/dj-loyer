@@ -9,9 +9,20 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 
-@api_view()
+@api_view(['POST'])
 def registration(request):
-    return Response({"message": "Hello, world!"})
+    payload = json.loads(request.body.decode('utf-8'))
+    print(payload)
+    try:
+        user = User()
+        user.username = payload['username']
+        user.email = payload['email']
+        user.set_password(payload['password'])
+        user.is_active = True
+        user.save()
+        return Response({"status": 0, "message": "User has been created!"})
+    except Exception as e:
+        return Response({"status":1, "message": str(e)})
 
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = MainDocuments.objects.all()

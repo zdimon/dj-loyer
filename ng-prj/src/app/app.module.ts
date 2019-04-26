@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegistrationModule } from './registration/registration.module';
 import { LoginService } from './login/login.service';
 import { FormsModule }   from '@angular/forms';
+import { AlertComponent } from './directives/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule }   from '@angular/forms';
     NavComponent,
     IndexComponent,
     LoginComponent,
-    DocumentComponent
+    DocumentComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

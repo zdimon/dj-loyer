@@ -8,7 +8,7 @@ router.register(r'documents', DocumentViewSet)
 
 urlpatterns = [
     path('api/login', LoginView.as_view()),
-    path('api/registration', registration),
+    path('api/register', registration),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
 ]
