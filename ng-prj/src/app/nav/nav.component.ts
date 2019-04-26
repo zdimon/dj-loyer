@@ -8,14 +8,11 @@ import { DbService } from '../db.service';
   styleUrls: ['./nav.component.sass']
 })
 export class NavComponent implements OnInit {
-  is_auth: string;
+  @Input() title: string;
   constructor(private db: DbService) { }
 
   ngOnInit() {
-    //this.is_auth = this.db.getIsLogin();
-    this.db.subscriber$.subscribe(data => {
-      this.is_auth = data;
-    })
+
   }
 
   logout() {
