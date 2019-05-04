@@ -4,3 +4,4 @@ djangorestframework
 markdown
 django-filter
 django-cors-headers
+python_slugify==1.2.4

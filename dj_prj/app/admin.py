@@ -11,8 +11,8 @@ admin.site.register(MainDocuments, MainDocumentsAdmin)
 
 
 class PersonAdmin(admin.ModelAdmin):
-    list_display = ['name_ru', 'role']
-    search_fields = ['name_ru']
+    list_display = ['raw_name', 'surename_lat', 'first_name_lat', 'last_name_lat', 'role']
+    search_fields = ['raw_name']
     list_filter = ['role']
 
 

@@ -1,13 +1,18 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from app.models import MainDocuments
-from app.serializer import DocumentSerializer
+from app.models import MainDocuments, Person
+from app.serializer import DocumentSerializer, PersonSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import json
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
+
+class PersonViewSet(viewsets.ModelViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+
 
 @api_view(['POST'])
 def registration(request):

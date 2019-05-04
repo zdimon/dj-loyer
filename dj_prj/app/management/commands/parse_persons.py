@@ -9,15 +9,16 @@ class Command(BaseCommand):
         print('Parsing persons.')   
         print("Deleting all persons")
         Person.objects.all().delete()
-        for md in MainDocuments.objects.all():
+        for md in MainDocuments.objects.all().order_by('-id'):
             
             match = re.search('Судья:(.*)',md.title)
             try:
                 rezult = match.group(1)    
                 p = Person()
-                p.name_ru = rezult
+                p.raw_name = rezult
                 p.role = 'judge'
                 p.save()
+                p.parse()
                 print("Saving ... %s" % rezult)
             except Exception as e:
                 print(str(e))
@@ -31,9 +32,10 @@ class Command(BaseCommand):
                         checking_words = nm.split(' ')
                         if len(checking_words)<5:
                             p = Person()
-                            p.name_ru = nm
+                            p.raw_name = nm
                             p.role = 'plantiff'
                             p.save()
+                            p.parse()
                 print("Saving ... %s" % rezult)
             except Exception as e:
                 print(str(e))             

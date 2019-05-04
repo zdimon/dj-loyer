@@ -1,0 +1,12 @@
+<form *ngIf="person">
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Raw name</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="person.raw_name" name="person_row_name" type="text" class="form-control">
+      <input [(ngModel)]="person.first_name_ru" name="person_first_name" type="text" class="form-control">
+    </div>
+  </div>
+  <button (click)="save()" class="btn btn-primary mb-2">Submit</button>
+</form>
+
+{{ person | json  }}

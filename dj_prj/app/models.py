@@ -1,5 +1,5 @@
 from django.db import models
-
+from slugify import slugify
 # Create your models here.
 
 
@@ -21,9 +21,32 @@ class MainDocuments(models.Model):
 
 
 class Person(models.Model):
-    name_ru = models.CharField(max_length=250,blank=True, null=True)
-    name_kz = models.CharField(max_length=250,blank=True, null=True)
-    name_translit = models.CharField(max_length=250,blank=True, null=True)
-    birth = models.DateField(blank=True, null=True)
-    role = models.CharField(max_length=50,blank=True, null=True)
+    raw_name = models.CharField(max_length=250,blank=True, null=True)
+    first_name_ru = models.CharField(max_length=250,blank=True, null=True)
+    last_name_ru = models.CharField(max_length=250,blank=True, null=True)
+    surename_ru = models.CharField(max_length=250,blank=True, null=True)
+    first_name_kz = models.CharField(max_length=250,blank=True, null=True)
+    last_name_kz = models.CharField(max_length=250,blank=True, null=True)
+    surename_kz = models.CharField(max_length=250,blank=True, null=True)
+    first_name_lat = models.CharField(max_length=250,blank=True, null=True)
+    last_name_lat = models.CharField(max_length=250,blank=True, null=True)
+    surename_lat = models.CharField(max_length=250,blank=True, null=True)
+    role = models.CharField(max_length=250,blank=True, null=True)
 
+    def parse(self):
+        raw_name = self.raw_name
+        raw_name = raw_name.replace('.','')
+        raw_name = raw_name.strip()
+        arr_name = raw_name.split(' ')
+        if len(arr_name)==3:
+            self.first_name_lat = slugify(arr_name[1])
+            self.last_name_lat = slugify(arr_name[2])
+            self.surename_lat = slugify(arr_name[0])
+            self.first_name_ru = arr_name[1]
+            self.last_name_ru = arr_name[2]
+            self.surename_ru = arr_name[0] 
+            self.first_name_kz = arr_name[1]
+            self.last_name_kz = arr_name[2]
+            self.surename_kz = arr_name[0]
+            self.save()
+    

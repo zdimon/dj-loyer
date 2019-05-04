@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">{{ title }} {{ is_auth  }}</a>
+  <a class="navbar-brand" href="#">{{ title }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,13 +12,16 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/documents">Documents</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/persons">Persons</a>
+      </li>
       <li class="nav-item" *ngIf="is_auth==='false'">
         <a class="nav-link" routerLink="/login">Login </a>
       </li>
       <li class="nav-item" *ngIf="is_auth==='true'">
           <a class="nav-link" (click)="logout()">Logout </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="is_auth==='false'">
         <a class="nav-link" routerLink="/registration">Registration</a>
       </li>
 

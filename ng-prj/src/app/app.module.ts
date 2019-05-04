@@ -15,6 +15,8 @@ import { RegistrationModule } from './registration/registration.module';
 import { LoginService } from './login/login.service';
 import { FormsModule }   from '@angular/forms';
 import { AlertComponent } from './directives/alert/alert.component';
+import { PersonModule } from './person/person.module';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { AlertComponent } from './directives/alert/alert.component';
     AppRoutingModule,
     HttpClientModule,
     RegistrationModule,
+    PersonModule,
     FormsModule,
     NgbModule.forRoot()
   ],
