@@ -4,7 +4,7 @@ from app.models import MainDocuments, Person
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = MainDocuments
-        fields = ['title', 'id', 'date']
+        fields = ['title', 'id', 'date', 'uid']
 
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -14,13 +14,13 @@ class PersonSerializer(serializers.ModelSerializer):
                     'raw_name',
                     'first_name_ru',
                     'last_name_ru',
-                    'surename_ru',
+                    'surname_ru',
                     'first_name_kz',
                     'last_name_kz',
-                    'surename_kz',
+                    'surname_kz',
                     'first_name_lat',
                     'last_name_lat',
-                    'surename_lat',
+                    'surname_lat',
                     'role'
                 
                   ]

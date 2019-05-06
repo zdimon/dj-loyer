@@ -1,12 +1,56 @@
-<form *ngIf="person">
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Raw name</label>
-    <div class="col-sm-10">
-      <input [(ngModel)]="person.raw_name" name="person_row_name" type="text" class="form-control">
-      <input [(ngModel)]="person.first_name_ru" name="person_first_name" type="text" class="form-control">
-    </div>
-  </div>
-  <button (click)="save()" class="btn btn-primary mb-2">Submit</button>
-</form>
+<div class="container">
+  <form  (ngSubmit)="onSubmit()"  #personForm="ngForm">
 
-{{ person | json  }}
+
+        <div class="form-group row">
+          <div class="col-sm-3">
+                <h4>Русский</h4>
+                <label class="col-form-label">Фамилия</label>
+                <input [(ngModel)]="person.surname_ru" name="surname_ru" type="text" class="form-control form-control-sm" required  #surname_ru="ngModel">
+
+                <label class="col-form-label">Имя</label>
+                <input [(ngModel)]="person.first_name_ru" name="first_name_ru" type="text" class="form-control form-control-sm" required>
+                <label class="col-form-label">Отчество</label>
+                <input [(ngModel)]="person.last_name_ru" name="last_name_ru" type="text" class="form-control form-control-sm" required>
+          </div>
+          <div class="col-sm-3">
+              <h4>Казахский</h4>
+              <label class="col-form-label">Фамилия</label>
+              <input [(ngModel)]="person.surname_kz" name="surename_kz" type="text" class="form-control form-control-sm" required>
+              <label class="col-form-label">Имя</label>
+              <input [(ngModel)]="person.first_name_kz" name="first_name_kz" type="text" class="form-control form-control-sm" required>
+              <label class="col-form-label">Отчество</label>
+              <input [(ngModel)]="person.last_name_kz" name="last_name_kz" type="text" class="form-control form-control-sm" required>
+          </div>
+          <div class="col-sm-3">
+              <h4>Транслит</h4>
+              <label class="col-form-label">Фамилия</label>
+              <input [(ngModel)]="person.surname_lat" name="surename_lat" type="text" class="form-control form-control-sm" required>
+              <label class="col-form-label">Имя</label>
+              <input [(ngModel)]="person.first_name_lat" name="first_name_lat" type="text" class="form-control form-control-sm" required>
+              <label class="col-form-label">Отчество</label>
+              <input [(ngModel)]="person.last_name_lat" name="last_name_lat" type="text" class="form-control form-control-sm" required>
+          </div>
+          <div class="col-sm-3">
+              <h4>Родственники</h4>
+          </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-8">
+                <label class="col-form-label">Роль</label>
+
+                <select  [(ngModel)]="person.role"  class="form-control form-control-sm" name="role" required>
+                    <option *ngFor="let role of roles" [value]="role.value">{{role.name}}</option>
+                  </select>
+
+            </div>
+            <div class="col-sm-4">
+              <button class="btn btn-primary mb-2" [disabled]="!personForm.form.valid">Submit</button> &nbsp;
+              <a class="btn btn-warning mb-2" (click)="clear()">Очистить</a>
+            </div>
+        </div>
+
+  </form>
+</div>
+
+

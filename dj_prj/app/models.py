@@ -22,15 +22,15 @@ class MainDocuments(models.Model):
 
 class Person(models.Model):
     raw_name = models.CharField(max_length=250,blank=True, null=True)
-    first_name_ru = models.CharField(max_length=250,blank=True, null=True)
-    last_name_ru = models.CharField(max_length=250,blank=True, null=True)
-    surename_ru = models.CharField(max_length=250,blank=True, null=True)
+    first_name_ru = models.CharField(max_length=250)
+    last_name_ru = models.CharField(max_length=250)
+    surname_ru = models.CharField(max_length=250)
     first_name_kz = models.CharField(max_length=250,blank=True, null=True)
     last_name_kz = models.CharField(max_length=250,blank=True, null=True)
-    surename_kz = models.CharField(max_length=250,blank=True, null=True)
+    surname_kz = models.CharField(max_length=250,blank=True, null=True)
     first_name_lat = models.CharField(max_length=250,blank=True, null=True)
     last_name_lat = models.CharField(max_length=250,blank=True, null=True)
-    surename_lat = models.CharField(max_length=250,blank=True, null=True)
+    surname_lat = models.CharField(max_length=250,blank=True, null=True)
     role = models.CharField(max_length=250,blank=True, null=True)
 
     def parse(self):
@@ -41,12 +41,16 @@ class Person(models.Model):
         if len(arr_name)==3:
             self.first_name_lat = slugify(arr_name[1])
             self.last_name_lat = slugify(arr_name[2])
-            self.surename_lat = slugify(arr_name[0])
+            self.surname_lat = slugify(arr_name[0])
             self.first_name_ru = arr_name[1]
             self.last_name_ru = arr_name[2]
-            self.surename_ru = arr_name[0] 
+            self.surname_ru = arr_name[0] 
             self.first_name_kz = arr_name[1]
             self.last_name_kz = arr_name[2]
-            self.surename_kz = arr_name[0]
+            self.surname_kz = arr_name[0]
             self.save()
     
+
+class Person2Document(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    document = models.ForeignKey(MainDocuments, on_delete=models.CASCADE)

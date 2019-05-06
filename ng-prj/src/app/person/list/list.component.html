@@ -1,23 +1,68 @@
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link"
+        *ngIf="prev"
+        (click)="getPersonList(offset-30)">
+          Назад
+        </a>
+      </li>
+
+      <li class="page-item">
+        <a class="page-link"
+          *ngIf="next"
+          (click)="getPersonList(offset+30)">
+          Вперед
+        </a>
+      </li>
+      <li>
+          <a class="page-link">всего: {{ count  }} персон
+            страница {{ (offset/perpage)+1   }} из {{ count/perpage | number:'1.0-0' }}
+          </a>
+      </li>
+    </ul>
+  </nav>
+
 <table class="table table-striped table-sm table-bordered  table-hover">
   <thead>
     <tr>
       <th>#</th>
-      <th>Raw name</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Surname</th>
-      <th>Role</th>
+      <th>Русский</th>
+      <th>Казахский</th>
+      <th>Транслит</th>
+      <th>Информация</th>
+      <th>#</th>
     </tr>
   </thead>
   <tbody>
 
-    <tr *ngFor="let person of persons" (click)="onSelect(person)">
+    <tr  [ngClass]="{'table-danger': person.id==current}" class="table_row" *ngFor="let person of persons" >
       <td>{{ person.id  }}</td>
-      <td>{{ person.raw_name  }}</td>
-      <td>{{ person.first_name_ru  }}</td>
-      <td>{{ person.last_name_ru  }}</td>
-      <td>{{ person.surename_ru  }}</td>
+      <td>
+        <a (click)="onSelect(person)">
+          {{ person.surname_ru  }}
+          {{ person.first_name_ru  }}
+          {{ person.last_name_ru  }}
+        </a>
+      </td>
+      <td>
+          {{ person.surname_kz  }}
+          {{ person.first_name_kz  }}
+          {{ person.last_name_kz  }}
+      </td>
+      <td>
+          {{ person.surname_lat  }}
+          {{ person.first_name_lat  }}
+          {{ person.last_name_lat  }}
+      </td>
+
       <td>{{ person.role  }}</td>
+      <td>
+        <button type="button" class="close" (click)="delete(person)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </td>
     </tr>
 
   </tbody>

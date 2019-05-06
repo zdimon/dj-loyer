@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent{
-  title = 'Loyer service';
+  title = 'Юридический сервис';
   is_auth: string;
 
   constructor() {

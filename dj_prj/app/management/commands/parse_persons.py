@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from app.models import Person, MainDocuments
+from app.models import Person, MainDocuments, Person2Document
 import re
 
 class Command(BaseCommand):
@@ -19,6 +19,10 @@ class Command(BaseCommand):
                 p.role = 'judge'
                 p.save()
                 p.parse()
+                p2d = Person2Document()
+                p2d.person = p
+                p2d.document = md
+                p2d.save()
                 print("Saving ... %s" % rezult)
             except Exception as e:
                 print(str(e))
@@ -36,6 +40,10 @@ class Command(BaseCommand):
                             p.role = 'plantiff'
                             p.save()
                             p.parse()
+                            p2d = Person2Document()
+                            p2d.person = p
+                            p2d.document = md
+                            p2d.save()
                 print("Saving ... %s" % rezult)
             except Exception as e:
                 print(str(e))             
