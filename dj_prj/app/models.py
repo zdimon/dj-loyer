@@ -5,22 +5,22 @@ from slugify import slugify
 class City(models.Model):
     name_ru = models.CharField(max_length=250)
     name_kz = models.CharField(max_length=250)
-    def __unicode__(self):
+    def __str__(self):
         return self.name_ru
 
 class Court(models.Model):
     name_ru = models.CharField(max_length=250)
     name_kz = models.CharField(max_length=250)
     city = models.ForeignKey(City,blank=True, null=True, on_delete=models.SET_NULL)
-    def __unicode__(self):
+    def __str__(self):
         return self.name_ru
 
 class Position(models.Model):
     name_ru = models.CharField(max_length=250)
     name_kz = models.CharField(max_length=250)
-    def __unicode__(self):
+    def __str__(self):
         return self.name_ru
-        
+
 class MainDocuments(models.Model):
     uid = models.CharField(max_length=250)
     title = models.TextField(blank=True, null=True)
