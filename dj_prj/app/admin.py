@@ -34,3 +34,8 @@ class PositionAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Position, PositionAdmin)
+
+class CompanyAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Company, CompanyAdmin)

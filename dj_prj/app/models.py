@@ -30,6 +30,8 @@ class Position(models.Model):
         verbose_name = 'Должность'
         verbose_name_plural = 'Должностя'
 
+
+
 class MainDocuments(models.Model):
     uid = models.CharField(max_length=250)
     title = models.TextField(blank=True, null=True)
@@ -113,3 +115,14 @@ class Person2Document(models.Model):
     document = models.ForeignKey(MainDocuments, on_delete=models.CASCADE)
 
 
+class Company(models.Model):
+    name_ru = models.CharField(max_length=250)
+    name_kz = models.CharField(max_length=250)
+    bin = models.CharField(max_length=12)
+    city = models.ForeignKey(City,blank=True, null=True, on_delete=models.SET_NULL)
+    faunders = models.ManyToManyField(Person,blank=True, null=True)
+    def __str__(self):
+        return self.name_ru
+    class Meta:
+        verbose_name = 'Компания'
+        verbose_name_plural = 'Компании'
