@@ -7,6 +7,9 @@ class City(models.Model):
     name_kz = models.CharField(max_length=250)
     def __str__(self):
         return self.name_ru
+    class Meta:
+        verbose_name = 'Город'
+        verbose_name_plural = 'Города'
 
 class Court(models.Model):
     name_ru = models.CharField(max_length=250)
@@ -14,12 +17,18 @@ class Court(models.Model):
     city = models.ForeignKey(City,blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.name_ru
+    class Meta:
+        verbose_name = 'Суд'
+        verbose_name_plural = 'Суды'
 
 class Position(models.Model):
     name_ru = models.CharField(max_length=250)
     name_kz = models.CharField(max_length=250)
     def __str__(self):
         return self.name_ru
+    class Meta:
+        verbose_name = 'Должность'
+        verbose_name_plural = 'Должностя'
 
 class MainDocuments(models.Model):
     uid = models.CharField(max_length=250)
@@ -41,6 +50,8 @@ class MainDocuments(models.Model):
         self.save()
     class Meta:
         db_table = 'main_documents'
+        verbose_name = 'Судебное решение'
+        verbose_name_plural = 'Судебные решения'
 
 
 class Person(models.Model):
@@ -93,7 +104,9 @@ class Person(models.Model):
             self.last_name_kz = arr_name[2]
             self.surname_kz = arr_name[0]
             self.save()
-    
+    class Meta:
+        verbose_name = 'Физ. лицо'
+        verbose_name_plural = 'Физ. лица' 
 
 class Person2Document(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
