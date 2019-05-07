@@ -75,6 +75,9 @@ class Person(models.Model):
     rnn = models.CharField(max_length=12,blank=True, null=True)
     court = models.ForeignKey(Court,blank=True, null=True, on_delete=models.SET_NULL)
 
+    def __str__(self):
+        return self.surname_ru
+
 
     def search_opt(self):
         self.search_field = "%s %s %s %s %s %s %s %s %s" % (
@@ -120,7 +123,7 @@ class Company(models.Model):
     name_kz = models.CharField(max_length=250)
     bin = models.CharField(max_length=12)
     city = models.ForeignKey(City,blank=True, null=True, on_delete=models.SET_NULL)
-    faunders = models.ManyToManyField(Person,blank=True, null=True)
+    faunders = models.ManyToManyField(Person,blank=True)
     def __str__(self):
         return self.name_ru
     class Meta:
