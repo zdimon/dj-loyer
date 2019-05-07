@@ -10,7 +10,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 
 class PersonViewSet(viewsets.ModelViewSet):
-    queryset = Person.objects.all()
+    queryset = Person.objects.all().order_by('-id')
     serializer_class = PersonSerializer
 
 
@@ -30,7 +30,7 @@ def registration(request):
         return Response({"status":1, "message": str(e)})
 
 class DocumentViewSet(viewsets.ModelViewSet):
-    queryset = MainDocuments.objects.all()
+    queryset = MainDocuments.objects.all().order_by('-id')
     serializer_class = DocumentSerializer
 
 
