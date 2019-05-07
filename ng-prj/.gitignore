@@ -2,6 +2,7 @@
 
 # compiled output
 /tmp
+/dist
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
@@ -44,3 +45,4 @@ testem.log
 .DS_Store
 Thumbs.db
 package-lock.json
+/src/app/global.ts
