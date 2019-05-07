@@ -1,0 +1,60 @@
+<h3>Список документов</h3>
+<div class="row">
+<div class="col-sm-9">
+  <nav [hidden]="!search">
+      <ul class="pagination">
+          <li class="page-item">
+              Поиск по: "{{ search_key  }}"
+          </li>
+        </ul>
+  </nav>
+  <nav [hidden]="search">
+      <ul class="pagination">
+        <li class="page-item">
+          <button class="page-link"
+
+          [disabled]="!prev"
+          (click)="getPage(offset-perpage)">
+            Назад
+        </button>
+        </li>
+
+        <li class="page-item">
+          <button class="page-link"
+            *ngIf="next"
+            (click)="getPage(offset+perpage)">
+            Вперед
+          </button>
+        </li>
+        <li>
+            <a class="page-link">всего: {{ count  }} записей
+              страница {{ (offset/perpage)+1   }} из {{ count/perpage | number:'1.0-0' }}
+            </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-sm-3">
+      <app-document-search></app-document-search>
+    </div>
+  </div>
+<table class="table table-striped table-sm table-bordered  table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Дата</th>
+      <th scope="col">Номер</th>
+      <th scope="col">Описание</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <th>{{ item.id  }}</th>
+      <td>{{ item.date  }}</td>
+      <td>{{ item.uid  }}</td>
+      <td>{{ item.title  }}</td>
+    </tr>
+  </tbody>
+</table>
+
+

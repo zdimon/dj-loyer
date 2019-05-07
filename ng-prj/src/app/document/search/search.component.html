@@ -1,0 +1,7 @@
+<form class="form-inline">
+  <div class="form-group">
+   Поиск: &nbsp; <input (keyup)="SearchSubmit()" [(ngModel)]="search_key" name="search_key" class="form-control" placeholder="фио номер дата">
+    <!--<a (click)="SearchSubmit()" class="btn btn-outline-success" >Search</a>-->
+    <a [hidden]="!search" (click)="clear()" class="btn close"> <span aria-hidden="true">&times;</span></a>
+  </div>
+</form>

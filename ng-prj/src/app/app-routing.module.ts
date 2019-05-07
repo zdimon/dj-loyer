@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'persons', component: PersonComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'documents', component: DocumentComponent},
+
   //{ path: 'documents', component: DocumentComponent, canActivate: [GuardService] },
   { path: '',
   redirectTo: '/index',

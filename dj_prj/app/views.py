@@ -9,9 +9,23 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 
+from rest_framework import generics
+from django.db.models import Q
+class SerchDocumentList(generics.ListAPIView):
+    serializer_class = DocumentSerializer
+    def get_queryset(self):
+        key = self.kwargs['key']
+        arrkey = key.split(' ')
+        q_objects = Q()
+        for item in arrkey:
+            q_objects.add(Q(search_field__icontains=item), Q.AND)
+        return MainDocuments.objects.filter(q_objects)
+   
+
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('-id')
     serializer_class = PersonSerializer
+
 
 
 @api_view(['POST'])

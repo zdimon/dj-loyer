@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MainDocuments, Person
+from .models import *
 # Register your models here.
 
 class MainDocumentsAdmin(admin.ModelAdmin):
@@ -20,3 +20,17 @@ admin.site.register(Person, PersonAdmin)
 
 
 
+class CourtAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Court, CourtAdmin)
+
+class CityAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(City, CityAdmin)
+
+class PositionAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Position, PositionAdmin)
