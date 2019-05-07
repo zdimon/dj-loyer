@@ -2,19 +2,20 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item">
-        <a class="page-link"
-        *ngIf="prev"
+        <button class="page-link"
+
+        [disabled]="!prev"
         (click)="getPersonList(offset-30)">
           Назад
-        </a>
+      </button>
       </li>
 
       <li class="page-item">
-        <a class="page-link"
+        <button class="page-link"
           *ngIf="next"
           (click)="getPersonList(offset+30)">
           Вперед
-        </a>
+        </button>
       </li>
       <li>
           <a class="page-link">всего: {{ count  }} персон
@@ -47,14 +48,18 @@
         </a>
       </td>
       <td>
+          <a (click)="onSelect(person)">
           {{ person.surname_kz  }}
           {{ person.first_name_kz  }}
           {{ person.last_name_kz  }}
+          </a>
       </td>
       <td>
+          <a (click)="onSelect(person)">
           {{ person.surname_lat  }}
           {{ person.first_name_lat  }}
           {{ person.last_name_lat  }}
+          </a>
       </td>
 
       <td>{{ person.role  }}</td>
