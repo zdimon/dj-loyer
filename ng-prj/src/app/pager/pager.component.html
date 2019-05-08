@@ -10,7 +10,7 @@
 
 
     <li>
-        <a [ngClass]="{disabled:currentPage === count}" class="page-link" (click)="setPage(currentPage+1)">Вперед</a>
+        <a [ngClass]="{disabled:currentPage === total}" class="page-link" (click)="setPage(currentPage+1)">Вперед</a>
     </li>
 
     <li class="page-link" (click)="setPage((total/perPage)-1)">
