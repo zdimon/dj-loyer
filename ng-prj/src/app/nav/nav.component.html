@@ -5,19 +5,21 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <!--
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/index">Home</a>
+    <ul class="pagination">
+
+
+
+      <li class="page-item" >
+        <button routerLink="/documents">Документы</button>
       </li>
-      -->
-      <li class="nav-item" >
-        <a class="nav-link" routerLink="/documents">Документы</a>
+      <li class="page-item" >
+        <button routerLink="/persons">Персоны</button>
       </li>
-      <li class="nav-item" >
-        <a class="nav-link" routerLink="/persons">Персоны</a>
+      <li class="page-item" >
+        <button routerLink="/company">Компании</button>
       </li>
-      <li class="nav-item" *ngIf="is_auth==='false'">
+
+      <li class="nav-item btn btn-success" *ngIf="is_auth==='false'">
         <a class="nav-link" routerLink="/login">Login </a>
       </li>
       <li class="nav-item" *ngIf="is_auth==='true'">

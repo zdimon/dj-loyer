@@ -1,3 +1,4 @@
+import { CompanyModule } from './company/company.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -16,6 +17,8 @@ import { FormsModule }   from '@angular/forms';
 import { AlertComponent } from './directives/alert/alert.component';
 import { PersonModule } from './person/person.module';
 import { DocumentModule } from './document/document.module';
+import { PagerComponent } from './pager/pager.component';
+
 
 
 @NgModule({
@@ -24,7 +27,8 @@ import { DocumentModule } from './document/document.module';
     NavComponent,
     IndexComponent,
     LoginComponent,
-    AlertComponent
+    AlertComponent,
+    PagerComponent
   ],
   imports: [
     BrowserModule,
@@ -34,11 +38,13 @@ import { DocumentModule } from './document/document.module';
     PersonModule,
     FormsModule,
     DocumentModule,
+    CompanyModule,
     NgbModule.forRoot()
   ],
   providers: [
     DocumentService,
-    LoginService
+    LoginService,
+
   ],
   bootstrap: [AppComponent]
 })

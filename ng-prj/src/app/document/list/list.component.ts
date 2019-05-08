@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DocumentService } from '../document.service';
 import { Person } from '../../person/model';
 
+
 @Component({
   selector: 'app-document-list',
   templateUrl: './list.component.html',

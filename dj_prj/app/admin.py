@@ -11,7 +11,7 @@ admin.site.register(MainDocuments, MainDocumentsAdmin)
 
 
 class PersonAdmin(admin.ModelAdmin):
-    list_display = ['raw_name', 'surname_lat', 'first_name_lat', 'last_name_lat', 'role']
+    list_display = ['raw_name', 'surname_lat', 'first_name_lat', 'last_name_lat', 'role', 'source']
     search_fields = ['raw_name']
     list_filter = ['role']
 
@@ -26,7 +26,7 @@ class CourtAdmin(admin.ModelAdmin):
 admin.site.register(Court, CourtAdmin)
 
 class CityAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name_ru', 'region']
 
 admin.site.register(City, CityAdmin)
 
@@ -36,6 +36,16 @@ class PositionAdmin(admin.ModelAdmin):
 admin.site.register(Position, PositionAdmin)
 
 class CompanyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name_ru', 'city_text', 'city', 'faunders_text']
 
 admin.site.register(Company, CompanyAdmin)
+
+class RegionAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Region, RegionAdmin)
+
+class ImportAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Import, ImportAdmin)

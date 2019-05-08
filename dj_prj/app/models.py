@@ -2,9 +2,19 @@ from django.db import models
 from slugify import slugify
 # Create your models here.
 
+class Region(models.Model):
+    name_ru = models.CharField(max_length=250)
+    name_kz = models.CharField(max_length=250)
+    def __str__(self):
+        return self.name_ru
+    class Meta:
+        verbose_name = 'Регион'
+        verbose_name_plural = 'Регионы'
+
 class City(models.Model):
     name_ru = models.CharField(max_length=250)
     name_kz = models.CharField(max_length=250)
+    region = models.ForeignKey(Region,blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.name_ru
     class Meta:
@@ -75,6 +85,12 @@ class Person(models.Model):
     rnn = models.CharField(max_length=12,blank=True, null=True)
     court = models.ForeignKey(Court,blank=True, null=True, on_delete=models.SET_NULL)
 
+    source = models.CharField(max_length=250,blank=True, null=True)
+
+    @property
+    def full_name_ru(self):
+        return '%s %s %s' % (self.surname_ru,self.first_name_ru,self.last_name_ru)
+
     def __str__(self):
         return self.surname_ru
 
@@ -99,16 +115,24 @@ class Person(models.Model):
         raw_name = raw_name.strip()
         arr_name = raw_name.split(' ')
         if len(arr_name)==3:
-            self.first_name_lat = slugify(arr_name[1])
-            self.last_name_lat = slugify(arr_name[2])
-            self.surname_lat = slugify(arr_name[0])
-            self.first_name_ru = arr_name[1]
-            self.last_name_ru = arr_name[2]
-            self.surname_ru = arr_name[0] 
-            self.first_name_kz = arr_name[1]
-            self.last_name_kz = arr_name[2]
-            self.surname_kz = arr_name[0]
+            self.first_name_lat = slugify(arr_name[1]).upper()
+            self.last_name_lat = slugify(arr_name[2]).upper()
+            self.surname_lat = slugify(arr_name[0]).upper()
+            self.first_name_ru = arr_name[1].upper()
+            self.last_name_ru = arr_name[2].upper()
+            self.surname_ru = arr_name[0].upper()
+            self.first_name_kz = arr_name[1].upper()
+            self.last_name_kz = arr_name[2].upper()
+            self.surname_kz = arr_name[0].upper()
             self.save()
+        if len(arr_name)==2:
+            self.first_name_lat = slugify(arr_name[1]).upper()
+            self.surname_lat = slugify(arr_name[0]).upper()
+            self.first_name_ru = arr_name[1].upper()
+            self.surname_ru = arr_name[0].upper()
+            self.first_name_kz = arr_name[1].upper()
+            self.surname_kz = arr_name[0].upper()
+            self.save()            
     class Meta:
         verbose_name = 'Физ. лицо'
         verbose_name_plural = 'Физ. лица' 
@@ -118,14 +142,26 @@ class Person2Document(models.Model):
     document = models.ForeignKey(MainDocuments, on_delete=models.CASCADE)
 
 
+
 class Company(models.Model):
     name_ru = models.CharField(max_length=250)
     name_kz = models.CharField(max_length=250)
     bin = models.CharField(max_length=12)
     city = models.ForeignKey(City,blank=True, null=True, on_delete=models.SET_NULL)
     faunders = models.ManyToManyField(Person,blank=True)
+    city_text = models.CharField(max_length=250)
+    faunders_text = models.CharField(max_length=250)
     def __str__(self):
         return self.name_ru
     class Meta:
         verbose_name = 'Компания'
         verbose_name_plural = 'Компании'
+
+class Import(models.Model):
+    url = models.CharField(max_length=250, db_index=True)
+    def __str__(self):
+        return self.url 
+
+class Person2Company(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)

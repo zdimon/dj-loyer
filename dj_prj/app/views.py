@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from app.models import MainDocuments, Person
-from app.serializer import DocumentSerializer, PersonSerializer
+from app.models import MainDocuments, Person, Company
+from app.serializer import DocumentSerializer, PersonSerializer, CompanySerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import json
@@ -21,6 +21,9 @@ class SerchDocumentList(generics.ListAPIView):
             q_objects.add(Q(search_field__icontains=item), Q.AND)
         return MainDocuments.objects.filter(q_objects)
    
+class CompanyViewSet(viewsets.ModelViewSet):
+    queryset = Company.objects.all().order_by('-id')
+    serializer_class = CompanySerializer   
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('-id')

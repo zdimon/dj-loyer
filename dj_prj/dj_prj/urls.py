@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from app.views import PersonViewSet, DocumentViewSet, LoginView, registration, SerchDocumentList
+from app.views import PersonViewSet, DocumentViewSet, LoginView, registration, SerchDocumentList, CompanyViewSet
 
 router = routers.DefaultRouter()
 router.register(r'documents', DocumentViewSet)
 router.register(r'persons', PersonViewSet)
+router.register(r'company', CompanyViewSet)
 #router.register(r'documents_search/(?P<key>.+)', SerchDocumentList.as_view(), base_name='documents_search')
 
 urlpatterns = [

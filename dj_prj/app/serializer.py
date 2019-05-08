@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from app.models import MainDocuments, Person
+from app.models import MainDocuments, Person, Company, Person2Company
+
+
+
 
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,3 +27,22 @@ class PersonSerializer(serializers.ModelSerializer):
                     'role'
                 
                   ]
+
+class CompanySerializer(serializers.ModelSerializer):
+    faunders = serializers.SerializerMethodField()
+    #city = serializers.CharField(source='City.name_ru', read_only=True)
+
+    def get_faunders(self, instance):
+        names = []
+        persons = Person2Company.objects.filter(company=instance)
+        for p in persons:
+            person = p.person
+            names.append({
+                'name': person.full_name_ru,
+                'id': person.id
+            })
+        return names
+    class Meta:
+        model = Company
+        fields = ['name_ru', 'city', 'faunders', 'bin', 'id']
+        depth = 1

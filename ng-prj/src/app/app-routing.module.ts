@@ -6,6 +6,7 @@ import { DocumentComponent } from './document/document.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { GuardService } from './login/guard.service';
 import { PersonComponent } from './person/person.component';
+import { CompanyComponent } from './company/company.component';
 
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'persons', component: PersonComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'documents', component: DocumentComponent},
+  { path: 'company', component: CompanyComponent},
 
   //{ path: 'documents', component: DocumentComponent, canActivate: [GuardService] },
   { path: '',
