@@ -24,7 +24,8 @@ export class DocumentService {
 
   constructor(private http: HttpClient) { }
 
-  getDocList(offset: number) {
+  getDocList(page: number, perpage: number) {
+    let offset = page*perpage;
     return this.http.get(API_URL + 'api/documents?limit=10&offset='+offset);
   }
 

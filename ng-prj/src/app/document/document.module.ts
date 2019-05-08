@@ -5,7 +5,7 @@ import { ShowComponent } from './show/show.component';
 import { FormComponent } from './form/form.component';
 import { DocumentComponent } from './document.component';
 import { SearchComponent } from './search/search.component';
-import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    SharedModule
   ]
 })
 export class DocumentModule { }

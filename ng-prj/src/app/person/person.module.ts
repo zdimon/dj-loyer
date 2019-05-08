@@ -3,14 +3,16 @@ import { CommonModule } from '@angular/common';
 import { PersonComponent } from './person.component';
 import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
-import { FormsModule } from '@angular/forms';
 import { PersonService } from './form/service';
+import { SharedModule } from '../shared.module';
+
+
 
 @NgModule({
   declarations: [PersonComponent, ListComponent, FormComponent],
   imports: [
     CommonModule,
-    FormsModule
+    SharedModule
   ],
   providers: [
     PersonService

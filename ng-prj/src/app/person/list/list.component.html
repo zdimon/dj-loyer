@@ -1,29 +1,4 @@
-
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item">
-        <button class="page-link"
-
-        [disabled]="!prev"
-        (click)="getPersonList(offset-30)">
-          Назад
-      </button>
-      </li>
-
-      <li class="page-item">
-        <button class="page-link"
-          *ngIf="next"
-          (click)="getPersonList(offset+30)">
-          Вперед
-        </button>
-      </li>
-      <li>
-          <a class="page-link">всего: {{ count  }} персон
-            страница {{ (offset/perpage)+1   }} из {{ count/perpage | number:'1.0-0' }}
-          </a>
-      </li>
-    </ul>
-  </nav>
+<app-pager [total]="total" [perPage]="perPage" [currentPage]="currentPage" ></app-pager>
 
 <table class="table table-striped table-sm table-bordered  table-hover">
   <thead>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../company.service';
-
+import { PagerService } from '../../pager/pager.service';
 
 @Component({
   selector: 'app-company-list',
@@ -10,20 +10,28 @@ import { CompanyService } from '../company.service';
 export class ListComponent implements OnInit {
 
   items: any;
+  total: number;
+  perPage: number = 30;
+  currentPage: number = 1;
 
-  constructor(private service: CompanyService) { }
+
+  constructor(private service: CompanyService, private pager: PagerService) { }
 
   ngOnInit() {
-    this.service.getCompanyList(10,10).subscribe(
-      (res: any) => {
-        this.items = res.results;
-        this.setPage(1);
-      }
-    );
-
+    this.pager.subscriber$.subscribe((page: number) => {
+        this.setPage(page);
+    });
+    this.setPage(1);
   }
 
   setPage(page: number) {
+    this.currentPage = page;
+    this.service.getCompanyList(page * this.perPage, this.perPage).subscribe(
+      (res: any) => {
+        this.items = res.results;
+        this.total = res.count;
+      }
+    );
     // get pager object from service
     //this.pager = this.pagerService.getPager(this.items.length, page);
     //console.log(this.pager);

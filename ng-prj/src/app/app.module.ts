@@ -13,13 +13,10 @@ import { DocumentService } from './document/document.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationModule } from './registration/registration.module';
 import { LoginService } from './login/login.service';
-import { FormsModule }   from '@angular/forms';
 import { AlertComponent } from './directives/alert/alert.component';
 import { PersonModule } from './person/person.module';
 import { DocumentModule } from './document/document.module';
-import { PagerComponent } from './pager/pager.component';
-
-
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -27,8 +24,7 @@ import { PagerComponent } from './pager/pager.component';
     NavComponent,
     IndexComponent,
     LoginComponent,
-    AlertComponent,
-    PagerComponent
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -36,15 +32,14 @@ import { PagerComponent } from './pager/pager.component';
     HttpClientModule,
     RegistrationModule,
     PersonModule,
-    FormsModule,
     DocumentModule,
     CompanyModule,
+    SharedModule,
     NgbModule.forRoot()
   ],
   providers: [
     DocumentService,
-    LoginService,
-
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

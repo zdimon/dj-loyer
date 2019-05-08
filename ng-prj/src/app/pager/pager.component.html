@@ -1,3 +1,31 @@
-<p>
-  pager works!
-</p>
+<nav>
+  <ul class="pagination">
+    <li [ngClass]="{disabled:currentPage === 1}" class="page-item">
+        <a class="page-link"  (click)="setPage(1)">Назад</a>
+    </li>
+
+    <li class="page-item" *ngFor="let page of page_list" [ngClass]="{active:currentPage === page}">
+      <a class="page-link" (click)="setPage(page)">{{page}}</a>
+    </li>
+
+
+    <li>
+        <a [ngClass]="{disabled:currentPage === count}" class="page-link" (click)="setPage(currentPage+1)">Вперед</a>
+    </li>
+
+    <li class="page-link" (click)="setPage((total/perPage)-1)">
+      <span aria-hidden="true" >&raquo;</span>
+    </li>
+
+    <li class="page-link">
+      Всего записей: {{ total }} страниц {{ total/perPage | number: '1.0-0'  }}
+    </li>
+
+    <li class="page-link text">перейти к:</li>
+    <li>
+      <input class="page-link text" #page (keyup)="setPage(page.value)" [(ngModel)]="currentPage" name="current_page">
+    </li>
+
+  </ul>
+</nav>
+

@@ -1,4 +1,16 @@
+import {Subject} from "rxjs/Rx";
+import { Injectable } from '@angular/core';
+
+
+@Injectable()
 export class PagerService {
+  private _emmiter = new Subject();
+  subscriber$ = this._emmiter.asObservable();
+
+  emmitPageEvent(page: number){
+    this._emmiter.next(page);
+  }
+
   getPager(totalItems: number, currentPage: number = 1, pageSize: number = 10) {
       // calculate total pages
       let totalPages = Math.ceil(totalItems / pageSize);

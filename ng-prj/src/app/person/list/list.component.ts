@@ -3,6 +3,7 @@ import { Person } from '../model';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../global';
 import { PersonService } from '../form/service';
+import { PagerService } from '../../pager/pager.service';
 
 @Component({
   selector: 'person-list',
@@ -12,11 +13,11 @@ import { PersonService } from '../form/service';
 export class ListComponent implements OnInit {
 
   current: number = 0;
-  offset: number = 0;
-  perpage: number = 30;
-  count: number;
-  next: string;
-  prev: string;
+  // pager
+  currentPage: number = 1;
+  perPage: number = 30;
+  total: number;
+  ////
 
   @Output() onSelected = new EventEmitter();
   onSelect(item: any){
@@ -27,32 +28,30 @@ export class ListComponent implements OnInit {
 
   persons: Person[];
 
-  constructor(private http: HttpClient,private ps: PersonService) { }
+  constructor(private http: HttpClient, private ps: PersonService, private pager: PagerService) { }
 
   ngOnInit() {
-    this.getPersonList(this.offset);
-    this.ps.subscriber$.subscribe(() => {
-      this.getPersonList(this.offset);
+    this.getPersonList(this.currentPage);
+    this.pager.subscriber$.subscribe((page: number) => {
+      this.getPersonList(page);
     });
   }
 
   delete(person: Person){
     if(confirm("Вы уверены?")) {
       return this.http.delete(API_URL+'api/persons/' + person.id + '/').subscribe((res: any) =>{
-        this.getPersonList(this.offset);
+        this.getPersonList(this.currentPage);
       }, () => {
         alert('Error of deleting!');
       });
     }
   }
 
-  getPersonList(offset: number) {
-    return this.http.get(API_URL+'api/persons?limit='+this.perpage+'&offset='+offset).subscribe((res: any) =>{
+  getPersonList(currentPage: number) {
+    let offset = currentPage*this.perPage;
+    return this.http.get(API_URL+'api/persons?limit='+this.perPage+'&offset='+offset).subscribe((res: any) =>{
       this.persons = res.results;
-      this.count = res.count;
-      this.next = res.next;
-      this.prev = res.previous;
-      this.offset = offset;
+      this.total = res.count;
     });
   }
 
