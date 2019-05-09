@@ -1,3 +1,20 @@
-<p>
-  form works!
-</p>
+<div class="container">
+<div *ngIf="item">
+  <div class="float-right my-3">
+    <button class="btn btn-success" (click)="list()">Вернуться в список</button>
+  </div>
+  <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+          
+                <h4>Русский</h4>
+                <label class="col-form-label">Фамилия</label>
+                <input formControlName="name_ru" type="text" class="form-control form-control-sm" required >
+        </div>
+        <div class="float-right my-3">
+            <button type="submit" class="btn btn-success">Сохранить</button>
+          </div>
+  </form>
+</div>
+
+
+

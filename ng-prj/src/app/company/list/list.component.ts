@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CompanyService } from '../company.service';
 import { PagerService } from '../../pager/pager.service';
 
@@ -8,6 +8,9 @@ import { PagerService } from '../../pager/pager.service';
   styleUrls: ['./list.component.sass']
 })
 export class ListComponent implements OnInit {
+
+  @Input() hide_list: boolean;
+  @Output() isNewItem = new EventEmitter<boolean>();
 
   items: any;
   total: number;
@@ -22,6 +25,10 @@ export class ListComponent implements OnInit {
         this.setPage(page);
     });
     this.setPage(1);
+  }
+
+  new(){
+    this.isNewItem.emit(true); 
   }
 
   setPage(page: number) {

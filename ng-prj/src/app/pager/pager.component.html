@@ -1,4 +1,4 @@
-<nav>
+<nav *ngIf="total>0">
   <ul class="pagination">
     <li [ngClass]="{disabled:currentPage === 1}" class="page-item">
         <a class="page-link"  (click)="setPage(1)">Назад</a>
@@ -17,7 +17,7 @@
       <span aria-hidden="true" >&raquo;</span>
     </li>
 
-    <li class="page-link">
+    <li class="page-link text">
       Всего записей: {{ total }} страниц {{ total/perPage | number: '1.0-0'  }}
     </li>
 
