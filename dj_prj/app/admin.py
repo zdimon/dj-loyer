@@ -49,3 +49,8 @@ class ImportAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Import, ImportAdmin)
+
+class RoleAdmin(admin.ModelAdmin):
+    ordering = ('name_ru',)
+
+admin.site.register(Role, RoleAdmin)

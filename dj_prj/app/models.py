@@ -65,7 +65,12 @@ class MainDocuments(models.Model):
         verbose_name = 'Судебное решение'
         verbose_name_plural = 'Судебные решения'
 
-
+class Role(models.Model):
+    name_ru = models.CharField(max_length=250)
+    name_kz = models.CharField(max_length=250)
+    def __str__(self):
+        return self.name_ru
+        
 class Person(models.Model):
     raw_name = models.CharField(max_length=250,blank=True, null=True)
     first_name_ru = models.CharField(max_length=250)
@@ -79,7 +84,7 @@ class Person(models.Model):
     surname_lat = models.CharField(max_length=250,blank=True, null=True)
     role = models.CharField(max_length=250,blank=True, null=True)
     search_field = models.TextField(blank=True, null=True)
-
+    roleperson = court = models.ForeignKey(Role,blank=True, null=True, on_delete=models.SET_NULL)
     birth = models.DateField(blank=True, null=True)
     inn = models.CharField(max_length=12,blank=True, null=True)
     rnn = models.CharField(max_length=12,blank=True, null=True)

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from app.models import MainDocuments, Person, Company
-from app.serializer import DocumentSerializer, PersonSerializer, CompanySerializer
+from app.models import MainDocuments, Person, Company, City, Role
+from app.serializer import DocumentSerializer, PersonSerializer, CompanySerializer, CitySerializer, RoleSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import json
@@ -29,7 +29,15 @@ class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('-id')
     serializer_class = PersonSerializer
 
+class RoleViewSet(viewsets.ModelViewSet):
+    queryset = Role.objects.all().order_by('name_ru')
+    serializer_class = RoleSerializer
+    pagination_class = None
 
+class CityViewSet(viewsets.ModelViewSet):
+    queryset = City.objects.all().order_by('name_ru')
+    serializer_class = CitySerializer
+    pagination_class = None
 
 @api_view(['POST'])
 def registration(request):

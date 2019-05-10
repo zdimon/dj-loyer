@@ -1,10 +1,17 @@
 
-<app-company-form 
+<app-company-form
+[hidden] = "isFormHidden"
 [item]="item"
 (showList) = "showList()">
-</app-company-form> 
+</app-company-form>
 
-<app-company-list 
-[hide_list]="hide_list" 
+
+<app-company-show
+[hidden] = "isShowHidden">
+</app-company-show>
+
+
+<app-company-list
+ [hidden] = "isListHidden"
 (isNewItem)="new($event)">
 </app-company-list>

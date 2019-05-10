@@ -17,6 +17,9 @@ export class AlertComponent implements OnInit {
 
     this.subscription = this.alertService.getMessage().subscribe(message => {
       this.message = message;
+      setTimeout(()=>{
+        this.message = null;
+      },3000)
     });
 
   }

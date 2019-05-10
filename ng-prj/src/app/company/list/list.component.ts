@@ -21,19 +21,30 @@ export class ListComponent implements OnInit {
   constructor(private service: CompanyService, private pager: PagerService) { }
 
   ngOnInit() {
+    // pager
     this.pager.subscriber$.subscribe((page: number) => {
         this.setPage(page);
+    });
+    // list updater
+    this.service.updateSubscriber$.subscribe(() => {
+      this.setPage(this.currentPage);
     });
     this.setPage(1);
   }
 
   new(){
-    this.isNewItem.emit(true); 
+    this.service.showFormEvent(null);
+  }
+
+  show(item: any) {
+    this.service.showItemEvent(item);
+    console.log(item);
+    window.scroll(0,0);
   }
 
   setPage(page: number) {
     this.currentPage = page;
-    this.service.getCompanyList(page * this.perPage, this.perPage).subscribe(
+    this.service.getCompanyList((page - 1) * this.perPage, this.perPage).subscribe(
       (res: any) => {
         this.items = res.results;
         this.total = res.count;

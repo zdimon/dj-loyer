@@ -1,6 +1,19 @@
 <div class="container">
   <form  (ngSubmit)="onSubmit()"  #personForm="ngForm">
 
+        <div class="row my-3">
+          <div class="col-md-6">
+              <h3>{{ person.full_name  }}</h3>
+          </div>
+          <div class="col-md-6">
+            <div class="btn-group float-right">
+
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="toList()">Вернуться в список</button>
+                <button type="submit" [disabled]="!personForm.form.valid" class="btn btn-success btn-sm">Сохранить</button>
+                <button type="button" (click)="clear()" class="btn btn-outline-warning btn-sm">Очистить</button>
+            </div>
+          </div>
+        </div>
 
         <div class="form-group row">
           <div class="col-sm-3">
@@ -36,21 +49,40 @@
           </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-8">
-                <label class="col-form-label">Роль</label>
+            <div class="col-sm-3">
+                <label class="col-form-label">Должность</label>
 
-                <select  [(ngModel)]="person.role"  class="form-control form-control-sm" name="role" required>
-                    <option *ngFor="let role of roles" [value]="role.value">{{role.name}}</option>
+                <select  [(ngModel)]="person.roleperson_id"  class="form-control form-control-sm" name="role" required>
+                    <option *ngFor="let role of roles" [value]="role.id">{{role.name_ru}}</option>
                   </select>
 
             </div>
-            <div class="col-sm-4">
-              <button class="btn btn-primary mb-2" [disabled]="!personForm.form.valid">Submit</button> &nbsp;
-              <a class="btn btn-warning mb-2" (click)="clear()">Очистить</a>
+
+            <div class="col-sm-3">
+              <label class="col-form-label">Дата рождения</label>
+
+              <input [(ngModel)]="person.birth" name="birth" type="date" class="form-control form-control-sm">
+
             </div>
+
+            <div class="col-sm-3">
+              <label class="col-form-label">ИНН</label>
+
+              <input [(ngModel)]="person.inn" name="inn" type="text" class="form-control form-control-sm">
+
+            </div>
+
+            <div class="col-sm-3">
+              <label class="col-form-label">РНН</label>
+
+              <input [(ngModel)]="person.rnn" name="rnn" type="text" class="form-control form-control-sm">
+
+            </div>
+
         </div>
 
   </form>
+
 </div>
 
 

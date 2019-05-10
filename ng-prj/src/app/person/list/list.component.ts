@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../global';
 import { PersonService } from '../form/service';
 import { PagerService } from '../../pager/pager.service';
+import { PersonEventService } from '../event.service';
 
 @Component({
   selector: 'person-list',
@@ -19,22 +20,30 @@ export class ListComponent implements OnInit {
   total: number;
   ////
 
-  @Output() onSelected = new EventEmitter();
+
+
   onSelect(item: any){
-    this.current = item.id;
-    this.onSelected.emit(item);
+    this.event_service.showFormEvent(item);
     window.scroll(0,0);
   }
 
   persons: Person[];
 
-  constructor(private http: HttpClient, private ps: PersonService, private pager: PagerService) { }
+  constructor(private http: HttpClient, private ps: PersonService, private pager: PagerService,
+    private event_service: PersonEventService) { }
 
   ngOnInit() {
     this.getPersonList(this.currentPage);
     this.pager.subscriber$.subscribe((page: number) => {
       this.getPersonList(page);
     });
+    this.event_service.updateSubscriber$.subscribe(() => {
+      this.getPersonList(this.currentPage);
+    });
+  }
+
+  new(){
+    this.event_service.showFormEvent(null);
   }
 
   delete(person: Person){
@@ -48,7 +57,7 @@ export class ListComponent implements OnInit {
   }
 
   getPersonList(currentPage: number) {
-    let offset = currentPage*this.perPage;
+    let offset = (currentPage-1)*this.perPage;
     return this.http.get(API_URL+'api/persons?limit='+this.perPage+'&offset='+offset).subscribe((res: any) =>{
       this.persons = res.results;
       this.total = res.count;

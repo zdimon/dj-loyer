@@ -1,6 +1,7 @@
 export class Person {
   id: number;
   raw_name: string;
+  full_name: string;
   first_name_ru: string;
   last_name_ru: string;
   surname_ru: string;
@@ -11,4 +12,9 @@ export class Person {
   last_name_lat: string;
   surname_lat: string;
   role: string;
+  birth: string;
+  inn: string;
+  rnn: string;
+  roleperson: any;
+  roleperson_id: number;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonEventService } from './event.service';
 
 @Component({
   selector: 'app-person',
@@ -7,14 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonComponent implements OnInit {
 
-  item: any;
-  constructor() { }
+  // Interface
+  isListHidden: boolean = false;
+  isFormHidden: boolean = true;
+
+  constructor(private event_service: PersonEventService) { }
 
   ngOnInit() {
+
+    this.event_service.formSubscriber$.subscribe(() => {
+      this.isFormHidden = false;
+      this.isListHidden = true;
+    });
+
+    this.event_service.listSubscriber$.subscribe(() => {
+      this.isFormHidden = true;
+      this.isListHidden = false;
+    });
+
   }
 
-  select(event: any){
-    this.item = event;
-  }
 
 }

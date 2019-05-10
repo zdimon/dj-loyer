@@ -1,20 +1,56 @@
 <div class="container">
-<div *ngIf="item">
-  <div class="float-right my-3">
-    <button class="btn btn-success" (click)="list()">Вернуться в список</button>
-  </div>
+
   <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
-        <div class="form-group row">
-          
-                <h4>Русский</h4>
-                <label class="col-form-label">Фамилия</label>
-                <input formControlName="name_ru" type="text" class="form-control form-control-sm" required >
-        </div>
-        <div class="float-right my-3">
-            <button type="submit" class="btn btn-success">Сохранить</button>
+        <div class="row my-3">
+          <div class="col-md-6">
+              <h3>Добавление компании</h3>
           </div>
+          <div class="col-md-6">
+            <div class="btn-group float-right">
+
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="toList()">Вернуться в список</button>
+                <button type="submit" [disabled]="!companyForm.valid" class="btn btn-success btn-sm">Сохранить</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-2">
+              <label class="col-form-label">Название (рус)</label>
+          </div>
+          <div class="col-md-4">
+              <input formControlName="name_ru" type="text" class="form-control form-control-sm" required >
+          </div>
+          <div class="col-md-2">
+              <label class="col-form-label">Название (каз)</label>
+          </div>
+          <div class="col-md-4">
+              <input formControlName="name_kz" type="text" class="form-control form-control-sm" required >
+              <input formControlName="id" type="hidden">
+          </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="col-form-label">БИН</label>
+            </div>
+            <div class="col-md-4">
+                <input formControlName="bin" type="text" class="form-control form-control-sm" required >
+            </div>
+            <div class="col-md-2">
+                <label class="col-form-label">Город</label>
+            </div>
+            <div class="col-md-4">
+                <select class="form-control" formControlName="city_id">
+                    <option *ngFor="let m of cities" [value]="m.id">{{m.name_ru}}</option>
+                </select>
+            </div>
+          </div>
+
+
+
+
+
+
   </form>
 </div>
-
-
 

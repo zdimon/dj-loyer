@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Company  } from './model';
+import { CompanyService } from './company.service';
 
 @Component({
   selector: 'app-company',
@@ -9,20 +10,46 @@ import { Company  } from './model';
 export class CompanyComponent implements OnInit {
 
   item: Company;
-  hide_list: boolean = false;
 
-  constructor() { }
+  // Interface
+  isListHidden: boolean = false;
+  isShowHidden: boolean = true;
+  isFormHidden: boolean = true;
+  ////
+
+  constructor(private company_service: CompanyService) { }
 
   ngOnInit() {
+    // form
+    this.company_service.formSubscriber$.subscribe(() => {
+      this.isListHidden = true;
+      this.isShowHidden = true;
+      this.isFormHidden = false;
+    });
+
+    // list
+    this.company_service.listSubscriber$.subscribe(() => {
+      this.isListHidden = false;
+      this.isShowHidden = true;
+      this.isFormHidden = true;
+    });
+
+    //show
+    this.company_service.showSubscriber$.subscribe((item) => {
+      this.isListHidden = true;
+      this.isShowHidden = false;
+      this.isFormHidden = true;
+    });
+
   }
 
   new(){
     this.item = new Company();
-    this.hide_list = true;
+    this.isListHidden = true;
   }
 
   showList(){
-    this.hide_list = false;
+    this.isListHidden = false;
   }
 
 }

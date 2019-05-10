@@ -1,3 +1,22 @@
-<p>
- ...
-</p>
+<div class="row my-2">
+    <div class="col-md-6"></div>
+    <div class="col-md-6 btn-group">
+        <button type="button" class="btn btn-outline-info btn-sm" (click)="toList()">Вернуться к списку</button>
+        <button type="button" class="btn btn-outline-success btn-sm" (click)="edit(item)">Редактировать</button>
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(item.id)">Удалить</button>
+    </div>
+</div>
+<div class="row" *ngIf="item">
+  <div class="col-md-6">
+    <p><strong>Название (рус)</strong>: {{ item.name_ru  }}</p>
+    <p><strong>Название (каз)</strong>: {{ item.name_kz  }}</p>
+    <p> <strong>Город</strong>: {{ item.city?.name_ru  }} </p>
+    <p> <strong>БИН</strong>: {{ item.bin  }} </p>
+  </div>
+  <div class="col-md-6">
+    <h4>Учредители</h4>
+    <ul>
+      <li *ngFor="let p of item.faunders" >{{ p.name }}</li>
+    </ul>
+  </div>
+</div>
