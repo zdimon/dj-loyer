@@ -11,7 +11,7 @@ import { Validators } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
 
-  @Input() item: Company;
+
   @Output() showList = new EventEmitter<boolean>();
 
   cities = [];
