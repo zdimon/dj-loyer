@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DbService } from '../db.service';
 import { AlertService } from '../directives/alert.service';
 import { Router } from '@angular/router';
-
+import { UiService } from '../ui.service'
 
 @Component({
   selector: 'app-nav',
@@ -12,10 +12,12 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
   @Input() title: string;
   is_auth: string;
+  menu: any;
   constructor(
               private db: DbService,
               private alert: AlertService,
-              private router: Router
+              private router: Router,
+              private ui: UiService
               ) { }
 
   ngOnInit() {
@@ -23,7 +25,10 @@ export class NavComponent implements OnInit {
     this.db.subscriber$.subscribe(data => {
       this.is_auth = data;
     })
+    this.menu = this.ui.menu;
   }
+
+  
 
   logout() {
     this.db.setIsLogin('false');

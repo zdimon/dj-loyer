@@ -5,11 +5,12 @@ import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import { PersonService } from './form/service';
 import { SharedModule } from '../shared.module';
+import { SearchComponent } from './search/search.component';
 
 
 
 @NgModule({
-  declarations: [PersonComponent, ListComponent, FormComponent],
+  declarations: [PersonComponent, ListComponent, FormComponent, SearchComponent],
   imports: [
     CommonModule,
     SharedModule

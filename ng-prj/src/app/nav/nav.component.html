@@ -9,24 +9,24 @@
 
 
 
-      <li class="page-item" >
-        <button routerLink="/documents">Документы</button>
+      <li class="page-item mx-1" >
+        <button [className]="menu.document.is_active ? 'btn btn-outline-success':'btn btn-success btn-sm'" class="btn" routerLink="/documents">Документы</button>
       </li>
-      <li class="page-item" >
-        <button routerLink="/persons">Физ. лица</button>
+      <li class="page-item mx-1" >
+        <button [className]="menu.person.is_active ? 'btn btn-outline-success':'btn btn-success btn-sm'" class="btn btn-success btn-sm" routerLink="/persons">Физ. лица</button>
       </li>
-      <li class="page-item" >
-        <button routerLink="/company">Компании</button>
+      <li class="page-item mx-1" >
+        <button  [className]="menu.company.is_active ? 'btn btn-outline-success':'btn btn-success btn-sm'" class="btn btn-success btn-sm" routerLink="/company">Компании</button>
       </li>
 
-      <li class="nav-item btn btn-success" *ngIf="is_auth==='false'">
-        <a class="nav-link" routerLink="/login">Login </a>
+      <li class="nav-item" *ngIf="is_auth==='false'">
+        <a class="btn btn-success btn-sm mx-2" routerLink="/login">Login </a>
       </li>
       <li class="nav-item" *ngIf="is_auth==='true'">
-          <a class="nav-link" (click)="logout()">Logout </a>
+          <a class="btn btn-danger btn-sm" (click)="logout()">Logout </a>
       </li>
       <li class="nav-item" *ngIf="is_auth==='false'">
-        <a class="nav-link" routerLink="/registration">Registration</a>
+        <a class="btn btn-success btn-sm" routerLink="/registration">Registration</a>
       </li>
 
       <!--

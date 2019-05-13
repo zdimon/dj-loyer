@@ -9,8 +9,10 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 
+
 from rest_framework import generics
 from django.db.models import Q
+
 class SerchDocumentList(generics.ListAPIView):
     serializer_class = DocumentSerializer
     def get_queryset(self):
@@ -21,6 +23,25 @@ class SerchDocumentList(generics.ListAPIView):
             q_objects.add(Q(search_field__icontains=item), Q.AND)
         return MainDocuments.objects.filter(q_objects)
    
+class SerchPersonList(generics.ListAPIView):
+    serializer_class = PersonSerializer
+    def get_queryset(self):
+        q_objects = Q()
+        fio = self.kwargs['fio']
+        role = self.kwargs['role']
+        birth = self.kwargs['birth']
+        if fio != 'undefined':
+            arrkey = fio.split(' ')
+            for item in arrkey:
+                q_objects.add(Q(search_field__icontains=item), Q.AND)
+            #print(Person.objects.filter(q_objects).query)
+        if role != 'undefined' and role != 'null':
+            q_objects.add(Q(roleperson=role),Q.AND)
+        if birth != 'undefined':
+            q_objects.add(Q(birth=birth),Q.AND)
+        return Person.objects.filter(q_objects)
+
+
 class CompanyViewSet(viewsets.ModelViewSet):
     queryset = Company.objects.all().order_by('-id')
     serializer_class = CompanySerializer   

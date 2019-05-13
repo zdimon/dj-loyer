@@ -1,0 +1,34 @@
+    <form (ngSubmit)="onSubmit()"  #searchForm="ngForm">
+      <div class="row my-3">
+          <div class="search col-md-4">
+              <select (change)="onSubmit()"  [(ngModel)]="role"  class="form-control form-control-sm" name="role" required>
+                  <option *ngFor="let role of roles" [value]="role.id">{{role.name_ru}}</option>
+              </select>
+          </div>
+          <div class="search col-md-3">
+            <input (keyup)="onSubmit()" type="text" class="form-control form-control-sm" [(ngModel)]="fio" name="fio"   placeholder="ФИО">
+          </div>
+          <div class="search col-md-3">
+                        <input (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" [minDate]="{year: 1920, month: 1, day: 1}" [maxDate]="{year: 2010, month: 12, day: 31}"  type="text" (change)="onSubmit()" class="form-control form-control-sm" [(ngModel)]="birth" name="birth"  placeholder="Дата рождения">
+
+            {{ d.value  }}
+
+            
+            <!--
+            <input type="text" (change)="onSubmit()" class="form-control form-control-sm" [(ngModel)]="birth" name="birth"  placeholder="Дата рождения">
+            -->
+
+          </div>
+          <div class="search col-md-2">
+            <div class="btn-group float-right">
+              <button type="submit" class="btn btn-outline-info btn-sm">Поиск</button>
+              <button [disabled]="!isClearButton" type="button" (click)="reset()" class="btn btn-warning btn-sm">Очистить</button>
+            </div>
+          </div>
+      </div>
+
+    </form>
+
+
+
+

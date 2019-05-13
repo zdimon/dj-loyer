@@ -3,6 +3,7 @@ import { Person } from '../model';
 import { PersonService } from './service';
 import { PersonEventService } from '../event.service';
 
+
 @Component({
   selector: 'person-form',
   templateUrl: './form.component.html',

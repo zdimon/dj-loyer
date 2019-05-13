@@ -8,10 +8,21 @@ import { PagerService } from './pager.service';
 })
 export class PagerComponent implements OnInit {
 
-  @Input() total: any;
   @Input() perPage: number;
   @Input() currentPage: number;
   page_list: any;
+
+  private _total: number;
+
+  get total(){
+    return this._total;
+  }
+
+  @Input('total')
+  set total(value: number){
+    this._total = value;
+    this.page_list = this.generatePagesList();
+  }
 
   constructor(private pager_service: PagerService) { }
 
@@ -37,9 +48,10 @@ export class PagerComponent implements OnInit {
           startPage = this.currentPage - 5;
           endPage = this.currentPage + 4;
       }
-      let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
-      return pages;
+
     }
+    let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
+    return pages;
   }
 
   setPage(page: number){

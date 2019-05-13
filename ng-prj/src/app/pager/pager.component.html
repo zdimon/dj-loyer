@@ -1,4 +1,4 @@
-<nav *ngIf="total>0">
+<nav *ngIf="total>perPage">
   <ul class="pagination">
     <li [ngClass]="{disabled:currentPage === 1}" class="page-item">
         <a class="page-link"  (click)="setPage(1)">Назад</a>

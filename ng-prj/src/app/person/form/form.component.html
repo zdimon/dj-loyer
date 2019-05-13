@@ -16,33 +16,46 @@
         </div>
 
         <div class="form-group row">
-          <div class="col-sm-3">
-                <h4>Русский</h4>
-                <label class="col-form-label">Фамилия</label>
-                <input [(ngModel)]="person.surname_ru" name="surname_ru" type="text" class="form-control form-control-sm" required  #surname_ru="ngModel">
 
-                <label class="col-form-label">Имя</label>
-                <input [(ngModel)]="person.first_name_ru" name="first_name_ru" type="text" class="form-control form-control-sm" required>
-                <label class="col-form-label">Отчество</label>
-                <input [(ngModel)]="person.last_name_ru" name="last_name_ru" type="text" class="form-control form-control-sm" required>
-          </div>
-          <div class="col-sm-3">
-              <h4>Казахский</h4>
-              <label class="col-form-label">Фамилия</label>
-              <input [(ngModel)]="person.surname_kz" name="surename_kz" type="text" class="form-control form-control-sm" required>
-              <label class="col-form-label">Имя</label>
-              <input [(ngModel)]="person.first_name_kz" name="first_name_kz" type="text" class="form-control form-control-sm" required>
-              <label class="col-form-label">Отчество</label>
-              <input [(ngModel)]="person.last_name_kz" name="last_name_kz" type="text" class="form-control form-control-sm" required>
-          </div>
-          <div class="col-sm-3">
-              <h4>Транслит</h4>
-              <label class="col-form-label">Фамилия</label>
-              <input [(ngModel)]="person.surname_lat" name="surename_lat" type="text" class="form-control form-control-sm" required>
-              <label class="col-form-label">Имя</label>
-              <input [(ngModel)]="person.first_name_lat" name="first_name_lat" type="text" class="form-control form-control-sm" required>
-              <label class="col-form-label">Отчество</label>
-              <input [(ngModel)]="person.last_name_lat" name="last_name_lat" type="text" class="form-control form-control-sm" required>
+          <div class="col-sm-9">
+              <ngb-tabset>
+
+                  <ngb-tab title="Русский">
+                    <ng-template ngbTabContent>
+                        <label class="col-form-label">Фамилия</label>
+                        <input [(ngModel)]="person.surname_ru" name="surname_ru" type="text" class="form-control form-control-sm" required  #surname_ru="ngModel">
+
+                        <label class="col-form-label">Имя</label>
+                        <input [(ngModel)]="person.first_name_ru" name="first_name_ru" type="text" class="form-control form-control-sm" required>
+                        <label class="col-form-label">Отчество</label>
+                        <input [(ngModel)]="person.last_name_ru" name="last_name_ru" type="text" class="form-control form-control-sm" required>
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab title="Казахский">
+                      <ng-template ngbTabContent>
+                          <label class="col-form-label">Фамилия</label>
+                          <input [(ngModel)]="person.surname_kz" name="surename_kz" type="text" class="form-control form-control-sm" required>
+                          <label class="col-form-label">Имя</label>
+                          <input [(ngModel)]="person.first_name_kz" name="first_name_kz" type="text" class="form-control form-control-sm" required>
+                          <label class="col-form-label">Отчество</label>
+                          <input [(ngModel)]="person.last_name_kz" name="last_name_kz" type="text" class="form-control form-control-sm" required>
+                      </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab title="Транслит">
+                      <ng-template ngbTabContent>
+                          <label class="col-form-label">Фамилия</label>
+                          <input [(ngModel)]="person.surname_lat" name="surename_lat" type="text" class="form-control form-control-sm" required>
+                          <label class="col-form-label">Имя</label>
+                          <input [(ngModel)]="person.first_name_lat" name="first_name_lat" type="text" class="form-control form-control-sm" required>
+                          <label class="col-form-label">Отчество</label>
+                          <input [(ngModel)]="person.last_name_lat" name="last_name_lat" type="text" class="form-control form-control-sm" required>
+                      </ng-template>
+                  </ngb-tab>
+
+                </ngb-tabset>
+
           </div>
           <div class="col-sm-3">
               <h4>Родственники</h4>

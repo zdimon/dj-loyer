@@ -15,6 +15,9 @@ export class PersonEventService {
   private _list_emmiter = new Subject();
   listSubscriber$ = this._list_emmiter.asObservable();
 
+  private _search_emmiter = new Subject();
+  searchSubscriber$ = this._search_emmiter.asObservable();
+
   constructor() { }
 
 
@@ -30,5 +33,8 @@ export class PersonEventService {
     this._update_list_emmiter.next(true);
   }
 
+  searchEvent(data: any){
+    this._search_emmiter.next(data);
+  }
 
 }

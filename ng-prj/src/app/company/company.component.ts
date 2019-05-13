@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Company  } from './model';
 import { CompanyService } from './company.service';
+import { UiService } from '../ui.service'
 
 @Component({
   selector: 'app-company',
@@ -17,9 +18,10 @@ export class CompanyComponent implements OnInit {
   isFormHidden: boolean = true;
   ////
 
-  constructor(private company_service: CompanyService) { }
+  constructor(private company_service: CompanyService, private ui_service: UiService) { }
 
   ngOnInit() {
+    this.ui_service.activate('company');
     // form
     this.company_service.formSubscriber$.subscribe(() => {
       this.isListHidden = true;

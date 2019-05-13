@@ -83,13 +83,12 @@ class Person(models.Model):
     last_name_lat = models.CharField(max_length=250,blank=True, null=True)
     surname_lat = models.CharField(max_length=250,blank=True, null=True)
     role = models.CharField(max_length=250,blank=True, null=True)
-    search_field = models.TextField(blank=True, null=True)
+    search_field = models.TextField(blank=True, null=True, db_index=True)
     roleperson = court = models.ForeignKey(Role,blank=True, null=True, on_delete=models.SET_NULL)
     birth = models.DateField(blank=True, null=True)
     inn = models.CharField(max_length=12,blank=True, null=True)
     rnn = models.CharField(max_length=12,blank=True, null=True)
     court = models.ForeignKey(Court,blank=True, null=True, on_delete=models.SET_NULL)
-
     source = models.CharField(max_length=250,blank=True, null=True)
 
     @property
@@ -156,6 +155,7 @@ class Company(models.Model):
     faunders = models.ManyToManyField(Person,blank=True)
     city_text = models.CharField(max_length=250)
     faunders_text = models.CharField(max_length=250)
+    
     def __str__(self):
         return self.name_ru
     class Meta:

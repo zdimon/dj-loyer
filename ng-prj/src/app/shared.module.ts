@@ -4,6 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { PagerComponent } from './pager/pager.component';
 import { PagerService } from './pager/pager.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { DateParserFormatter  } from './directives/date-formatter';
+import { LoaderComponent } from './directives/loader/loader.component';
+
 
 @NgModule({
   imports: [ CommonModule, FormsModule],
@@ -11,11 +16,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PagerComponent
+    PagerComponent,
+    LoaderComponent,
+    NgbModule
   ],
   providers: [
-    PagerService
+    PagerService,
+    {provide: NgbDateParserFormatter, useClass: DateParserFormatter}
   ],
-  declarations: [ PagerComponent ],
+  declarations: [ PagerComponent, LoaderComponent ],
 })
 export class SharedModule { }
