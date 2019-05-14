@@ -14,5 +14,4 @@ class Command(BaseCommand):
                md.pk = None
                md.save()
                #print(md.id)
-
         
