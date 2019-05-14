@@ -5,13 +5,16 @@ import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
 import { ShowComponent } from './show/show.component';
 import { SharedModule } from '../shared.module';
+import {BusyModule} from 'angular2-busy';
+
 
 
 @NgModule({
   declarations: [CompanyComponent, FormComponent, ListComponent, ShowComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    BusyModule
   ]
 })
 export class CompanyModule { }

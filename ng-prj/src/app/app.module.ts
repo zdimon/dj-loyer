@@ -17,6 +17,7 @@ import { AlertComponent } from './directives/alert/alert.component';
 import { PersonModule } from './person/person.module';
 import { DocumentModule } from './document/document.module';
 import { SharedModule } from './shared.module';
+import {BusyModule} from 'angular2-busy';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SharedModule } from './shared.module';
     DocumentModule,
     CompanyModule,
     SharedModule,
+    BusyModule,
     NgbModule.forRoot()
   ],
   providers: [

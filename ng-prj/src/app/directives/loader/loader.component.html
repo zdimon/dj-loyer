@@ -1,1 +1,6 @@
-<h1 [hidden]="!is_loading">{{ message  }}---------{{ is_loading  }}</h1>
+
+<div class="d-flex justify-content-center loader">
+    <div [hidden]="!is_loading" class="spinner-border ml-auto" role="status">
+    </div>
+</div>
+

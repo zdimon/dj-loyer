@@ -20,9 +20,10 @@ export class HttpService {
   constructor(private _http: HttpClient) { }
 
   get(url: string): Observable<any> {
+    this._http_load_emmiter.next();
     return this._http.get(url)
                 .do((res: Response) => {
-                  this._http_load_emmiter.next();
+
                 }, (error: any) => {
                   this._http_error_emmiter.next();
                 })
@@ -32,9 +33,9 @@ export class HttpService {
   };
 
   delete(url: string): Observable<any> {
+    this._http_load_emmiter.next();
     return this._http.get(url)
                 .do((res: Response) => {
-                  this._http_load_emmiter.next();
                 }, (error: any) => {
                   this._http_error_emmiter.next();
                 })

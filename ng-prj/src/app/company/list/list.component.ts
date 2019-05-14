@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CompanyService } from '../company.service';
 import { PagerService } from '../../pager/pager.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-company-list',
@@ -17,12 +18,13 @@ export class ListComponent implements OnInit {
   perPage: number = 30;
   currentPage: number = 1;
 
+  busy: Subscription;
 
   constructor(private service: CompanyService, private pager: PagerService) { }
 
   ngOnInit() {
     // pager
-    this.pager.subscriber$.subscribe((page: number) => {
+    this.busy = this.pager.subscriber$.subscribe((page: number) => {
         this.setPage(page);
     });
     // list updater
@@ -44,7 +46,7 @@ export class ListComponent implements OnInit {
 
   setPage(page: number) {
     this.currentPage = page;
-    this.service.getCompanyList((page - 1) * this.perPage, this.perPage).subscribe(
+    this.busy = this.service.getCompanyList((page - 1) * this.perPage, this.perPage).subscribe(
       (res: any) => {
         this.items = res.results;
         this.total = res.count;
