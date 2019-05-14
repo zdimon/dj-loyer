@@ -1,0 +1,4 @@
+cd ng-prj
+ng build --prod
+cd dist/ng-prj
+python -m SimpleHTTPServer 8082

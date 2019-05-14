@@ -1,4 +1,4 @@
-<div [ngBusy]="busy"></div>
+
 <div class="row my-3">
   <div class="col-md-6">
         <h3>Список физ. лиц</h3>
@@ -26,7 +26,11 @@
   <tbody>
 
     <tr  [ngClass]="{'table-danger': person.id==current}" class="table_row" *ngFor="let person of persons" >
-      <td>{{ person.id  }}</td>
+      <td>
+        {{ person.id  }}
+        <span class="oi oi-pencil" (click)="onEdit(person)"></span>
+        <button (click)="onEdit(person)" class="btn">edit</button>
+      </td>
       <td>
         <a (click)="onSelect(person)">
           {{ person.surname_ru  }}
@@ -42,11 +46,15 @@
           </a>
       </td>
       <td>
-          <a (click)="onSelect(person)">
-          {{ person.surname_lat  }}
-          {{ person.first_name_lat  }}
-          {{ person.last_name_lat  }}
-          </a>
+          <span [hidden]="person.is_edit">
+            <a (click)="onEdit(person)">
+            {{ person.surname_lat  }}
+            {{ person.first_name_lat  }}
+            {{ person.last_name_lat  }}
+            </a>
+          </span>
+          <input type="text" name="surname_lat" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.surname_lat" required="" />
+          {{ person.is_edit  }}
       </td>
 
       <td>{{ person.role  }}</td>

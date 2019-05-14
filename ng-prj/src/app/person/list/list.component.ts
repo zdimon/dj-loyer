@@ -6,7 +6,7 @@ import { PersonService } from '../form/service';
 import { PagerService } from '../../pager/pager.service';
 import { PersonEventService } from '../event.service';
 import { HttpService as HttpClient} from '../../http.service';
-import {Subscription} from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'person-list',
@@ -27,7 +27,7 @@ export class ListComponent implements OnInit {
   isSearch: boolean = false;
 
 
-  busy: Subscription;
+
 
   onSelect(item: any){
     this.event_service.showFormEvent(item);
@@ -38,6 +38,11 @@ export class ListComponent implements OnInit {
 
   constructor(private http: HttpClient, private ps: PersonService, private pager: PagerService,
     private event_service: PersonEventService) { }
+
+  onEdit(person: Person){
+    console.log(person);
+    person.is_edit = true;
+  }
 
   ngOnInit() {
     this.getPersonList(this.currentPage);
@@ -82,7 +87,14 @@ export class ListComponent implements OnInit {
     if(this.isSearch){
       this.event_service.searchEvent({'action': 'remote_search'});
     } else {
-      this.busy = this.http.get(API_URL+'api/persons?limit='+this.perPage+'&offset='+offset).subscribe((res: any) =>{
+      this.http.get(API_URL+'api/persons?limit='+this.perPage+'&offset='+offset)
+        .pipe(map((item) => {
+          for(let k in item.results){
+            item.results[k].is_edit = false;
+          }
+          return item;
+        }))
+        .subscribe((res: any) =>{
         this.persons = res.results;
         this.total = res.count;
       });

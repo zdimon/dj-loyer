@@ -17,4 +17,5 @@ export class Person {
   rnn: string;
   roleperson: any;
   roleperson_id: number;
+  is_edit: boolean;
 }

@@ -18,8 +18,6 @@ export class ListComponent implements OnInit {
   perPage: number = 30;
   currentPage: number = 1;
 
-  busy: Subscription;
-
   constructor(private service: CompanyService, private pager: PagerService) { }
 
   ngOnInit() {
@@ -49,7 +47,7 @@ export class ListComponent implements OnInit {
 
   setPage(page: number) {
     this.currentPage = page;
-    this.busy = this.service.getCompanyList((page - 1) * this.perPage, this.perPage).subscribe(
+    this.service.getCompanyList((page - 1) * this.perPage, this.perPage).subscribe(
       (res: any) => {
         this.items = res.results;
         this.total = res.count;
@@ -62,7 +60,7 @@ export class ListComponent implements OnInit {
     //this.pagedItems = this.items.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
   ngOnDestroy() {
-    this.busy.unsubscribe();
+    //this.busy.unsubscribe();
   }
 
 }
