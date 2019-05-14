@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DocumentService } from '../document.service';
 import { Person } from '../../person/model';
 import { PagerService } from '../../pager/pager.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-document-list',
@@ -14,6 +15,7 @@ export class ListComponent implements OnInit {
   search: boolean;
   search_key: string;
 
+  busy: Subscription;
   // pager
   currentPage: number = 1;
   perPage: number = 30;
@@ -24,7 +26,7 @@ export class ListComponent implements OnInit {
 
   getPage(page: number) {
     this.currentPage = page;
-    this.http_service.getDocList(page, this.perPage).subscribe((data: any) => {
+    this.busy = this.http_service.getDocList(page, this.perPage).subscribe((data: any) => {
       this.items = data['results'];
       this.total = data['count'];
     })
@@ -52,6 +54,10 @@ export class ListComponent implements OnInit {
           this.search_key = key;
         })
       });
+  }
+
+  ngOnDestroy() {
+    this.busy.unsubscribe();
   }
 
 }

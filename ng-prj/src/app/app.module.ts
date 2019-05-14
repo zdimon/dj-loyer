@@ -17,7 +17,7 @@ import { AlertComponent } from './directives/alert/alert.component';
 import { PersonModule } from './person/person.module';
 import { DocumentModule } from './document/document.module';
 import { SharedModule } from './shared.module';
-import {BusyModule} from 'angular2-busy';
+import {BusyModule, BusyConfig} from 'angular2-busy';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,16 @@ import {BusyModule} from 'angular2-busy';
     DocumentModule,
     CompanyModule,
     SharedModule,
-    BusyModule,
+    BusyModule.forRoot(
+      new BusyConfig({
+          message: 'Подождите...',
+            backdrop: false,
+            template: '<div>{{message}}</div>',
+            delay: 0,
+            minDuration: 300,
+            wrapperClass: 'loader_class'
+        })
+    ),
     NgbModule.forRoot()
   ],
   providers: [

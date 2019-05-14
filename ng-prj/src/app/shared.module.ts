@@ -8,7 +8,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { DateParserFormatter  } from './directives/date-formatter';
 import { LoaderComponent } from './directives/loader/loader.component';
-
+import {BusyModule} from 'angular2-busy';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [ CommonModule, FormsModule],
@@ -18,7 +19,9 @@ import { LoaderComponent } from './directives/loader/loader.component';
     ReactiveFormsModule,
     PagerComponent,
     LoaderComponent,
-    NgbModule
+    NgbModule,
+    BusyModule,
+    BrowserAnimationsModule
   ],
   providers: [
     PagerService,

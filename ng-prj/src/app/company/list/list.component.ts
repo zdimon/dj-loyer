@@ -23,14 +23,17 @@ export class ListComponent implements OnInit {
   constructor(private service: CompanyService, private pager: PagerService) { }
 
   ngOnInit() {
+
     // pager
-    this.busy = this.pager.subscriber$.subscribe((page: number) => {
+    this.pager.subscriber$.subscribe((page: number) => {
         this.setPage(page);
     });
+
     // list updater
     this.service.updateSubscriber$.subscribe(() => {
       this.setPage(this.currentPage);
     });
+
     this.setPage(1);
   }
 
@@ -57,6 +60,9 @@ export class ListComponent implements OnInit {
     //console.log(this.pager);
     // get current page of items
     //this.pagedItems = this.items.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+  ngOnDestroy() {
+    this.busy.unsubscribe();
   }
 
 }

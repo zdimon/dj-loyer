@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonEventService } from './event.service';
-import { UiService } from '../ui.service'
+import { UiService } from '../ui.service';
+
 
 @Component({
   selector: 'app-person',

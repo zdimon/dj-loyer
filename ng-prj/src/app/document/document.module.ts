@@ -17,7 +17,7 @@ import { SharedModule } from '../shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class DocumentModule { }

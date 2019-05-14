@@ -5,7 +5,8 @@ import { API_URL } from '../../global';
 import { PersonService } from '../form/service';
 import { PagerService } from '../../pager/pager.service';
 import { PersonEventService } from '../event.service';
-import { HttpService as HttpClient} from '../../http.service'
+import { HttpService as HttpClient} from '../../http.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'person-list',
@@ -26,7 +27,7 @@ export class ListComponent implements OnInit {
   isSearch: boolean = false;
 
 
-
+  busy: Subscription;
 
   onSelect(item: any){
     this.event_service.showFormEvent(item);
@@ -81,7 +82,7 @@ export class ListComponent implements OnInit {
     if(this.isSearch){
       this.event_service.searchEvent({'action': 'remote_search'});
     } else {
-      return this.http.get(API_URL+'api/persons?limit='+this.perPage+'&offset='+offset).subscribe((res: any) =>{
+      this.busy = this.http.get(API_URL+'api/persons?limit='+this.perPage+'&offset='+offset).subscribe((res: any) =>{
         this.persons = res.results;
         this.total = res.count;
       });

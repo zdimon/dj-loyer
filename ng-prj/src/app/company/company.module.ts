@@ -5,7 +5,7 @@ import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
 import { ShowComponent } from './show/show.component';
 import { SharedModule } from '../shared.module';
-import {BusyModule} from 'angular2-busy';
+
 
 
 
@@ -13,8 +13,7 @@ import {BusyModule} from 'angular2-busy';
   declarations: [CompanyComponent, FormComponent, ListComponent, ShowComponent],
   imports: [
     CommonModule,
-    SharedModule,
-    BusyModule
+    SharedModule
   ]
 })
 export class CompanyModule { }
