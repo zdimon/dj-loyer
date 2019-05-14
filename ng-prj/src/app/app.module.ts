@@ -36,16 +36,7 @@ import {BusyModule, BusyConfig} from 'angular2-busy';
     DocumentModule,
     CompanyModule,
     SharedModule,
-    BusyModule.forRoot(
-      new BusyConfig({
-          message: 'Подождите...',
-            backdrop: false,
-            template: '<div>{{message}}</div>',
-            delay: 0,
-            minDuration: 300,
-            wrapperClass: 'loader_class'
-        })
-    ),
+    BusyModule,
     NgbModule.forRoot()
   ],
   providers: [
