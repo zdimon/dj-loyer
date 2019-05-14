@@ -8,9 +8,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print('fake base.')   
         #Person.objects.all().delete()
-        for r in range(1,2900):
+        for r in range(1,3000):
             print(r)
             for md in MainDocuments.objects.filter(pk__lt = 9281):
-               print(md.id)
+               md.pk = None
+               md.save()
+               #print(md.id)
 
         
