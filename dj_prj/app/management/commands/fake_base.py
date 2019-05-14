@@ -9,7 +9,7 @@ class Command(BaseCommand):
         print('fake base.')   
         #Person.objects.all().delete()
         for r in range(1,2900):
-            print r
+            print(r)
             for md in MainDocuments.objects.filter(pk__lt = 9281):
                print(md.id)
 
