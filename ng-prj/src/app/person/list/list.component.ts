@@ -35,17 +35,29 @@ export class ListComponent implements OnInit {
   }
 
   persons: Person[];
+  roles: [];
 
   constructor(private http: HttpClient, private ps: PersonService, private pager: PagerService,
     private event_service: PersonEventService) { }
 
   onEdit(person: Person){
-    console.log(person);
     person.is_edit = true;
+  }
+
+  inlineSave(person: Person){
+    person.is_edit = false;
+    this.ps.doSavePerson(person);
+  }
+
+  exit(person: Person){
+    person.is_edit = false;
   }
 
   ngOnInit() {
     this.getPersonList(this.currentPage);
+    this.ps.getRoles().subscribe((data: any) => {
+      this.roles = data;
+    });
     //pager
     this.pager.subscriber$.subscribe((page: number) => {
       this.getPersonList(page);

@@ -42,6 +42,7 @@ class PersonSerializer(serializers.ModelSerializer):
                     'roleperson',
                     'roleperson_id'
                   ]
+        depth = 1
 
 class CompanySerializer(serializers.ModelSerializer):
     faunders = serializers.SerializerMethodField()

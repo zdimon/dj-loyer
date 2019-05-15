@@ -27,23 +27,34 @@
 
     <tr  [ngClass]="{'table-danger': person.id==current}" class="table_row" *ngFor="let person of persons" >
       <td>
-        {{ person.id  }}
         <span class="oi oi-pencil" (click)="onEdit(person)"></span>
-        <button (click)="onEdit(person)" class="btn">edit</button>
+        <button [hidden]="person.is_edit" (click)="onEdit(person)" class="btn btn-success">Редактировать</button>
+        <button [hidden]="!person.is_edit" (click)="inlineSave(person)" class="btn btn-success">Сохранить</button>
+        <button [hidden]="!person.is_edit" (click)="exit(person)" class="btn btn-danger my-1">Отменить</button>
       </td>
       <td>
-        <a (click)="onSelect(person)">
-          {{ person.surname_ru  }}
-          {{ person.first_name_ru  }}
-          {{ person.last_name_ru  }}
-        </a>
+          <span [hidden]="person.is_edit">
+            <a (click)="onSelect(person)">
+              {{ person.surname_ru  }}
+              {{ person.first_name_ru  }}
+              {{ person.last_name_ru  }}
+            </a>
+          </span>
+        <input type="text" name="surname_ru" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.surname_ru" required="" />
+        <input type="text" name="first_name_ru" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.first_name_ru" required="" />
+        <input type="text" name="last_name_ru" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.last_name_ru" required="" />
       </td>
       <td>
-          <a (click)="onSelect(person)">
-          {{ person.surname_kz  }}
-          {{ person.first_name_kz  }}
-          {{ person.last_name_kz  }}
-          </a>
+          <span [hidden]="person.is_edit">
+            <a (click)="onSelect(person)">
+            {{ person.surname_kz  }}
+            {{ person.first_name_kz  }}
+            {{ person.last_name_kz  }}
+            </a>
+          </span>
+          <input type="text" name="surname_kz" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.surname_kz" required="" />
+          <input type="text" name="first_name_kz" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.first_name_kz" required="" />
+          <input type="text" name="last_name_kz" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.last_name_kz" required="" />
       </td>
       <td>
           <span [hidden]="person.is_edit">
@@ -54,10 +65,26 @@
             </a>
           </span>
           <input type="text" name="surname_lat" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.surname_lat" required="" />
-          {{ person.is_edit  }}
+          <input type="text" name="first_name_lat" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.first_name_lat" required="" />
+          <input type="text" name="last_name_lat" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.last_name_lat" required="" />
       </td>
 
-      <td>{{ person.role  }}</td>
+      <td>
+          <div [hidden]="person.is_edit">
+            Должность: {{ person.roleperson?.name_ru  }}
+          </div>
+          <div [hidden]="person.is_edit">
+              ИНН: {{ person.inn  }}
+          </div>   
+          <div [hidden]="person.is_edit">
+              Дата рождения: {{ person.birth  }}
+          </div>         
+        <select  placeholder="должность"  [hidden]="!person.is_edit"  [(ngModel)]="person.roleperson_id"  class="form-control form-control-sm" name="role" required>
+            <option *ngFor="let role of roles" [value]="role.id">{{role.name_ru}}</option>
+          </select>
+          <input type="text" name="inn" [hidden]="!person.is_edit" class="form-control" [(ngModel)]="person.inn" placeholder="ИНН" required="" />
+          <input [hidden]="!person.is_edit" [(ngModel)]="person.birth" name="birth" type="date" class="form-control form-control-sm">
+      </td>
       <td>
         <button type="button" class="close" (click)="delete(person)">
           <span aria-hidden="true">&times;</span>
