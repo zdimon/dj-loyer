@@ -15,7 +15,7 @@
     
 ### Копируем настройки
 
-    cp ng-prj/src/app/_global.ts ng-prj/src/app/_global.ts
+    cp src/app/_global.ts src/app/global.ts
     
 ### Собираем 
 
