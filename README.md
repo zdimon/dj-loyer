@@ -7,7 +7,7 @@
 ### Клонируем
 
     git clone git@github.com:zdimon/dj-loyer.git
-    cd dj-loyer
+    cd dj-loyer/ng-prj
     
 ### Устанавливаем зависимости.
 
