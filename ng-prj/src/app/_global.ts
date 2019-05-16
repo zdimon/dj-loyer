@@ -1,1 +1,1 @@
-export const API_URL = 'http://loyer.wezom.agency:8989/';
+export const API_URL = 'http://loyer.support.wezom.agency:8989/';
