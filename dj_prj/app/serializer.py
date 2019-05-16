@@ -26,6 +26,7 @@ class PersonSerializer(serializers.ModelSerializer):
         model = Person
         fields = [  'id',
                     'raw_name',
+                    'full_name_ru',
                     'first_name_ru',
                     'last_name_ru',
                     'surname_ru',

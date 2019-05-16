@@ -27,6 +27,9 @@ export class ListComponent implements OnInit {
   isSearch: boolean = false;
 
 
+  is_analize: boolean = false;
+
+
 
 
   onSelect(item: any){
@@ -42,6 +45,11 @@ export class ListComponent implements OnInit {
 
   onEdit(person: Person){
     person.is_edit = true;
+  }
+
+  analize(person: Person){
+    this.is_analize = true;
+    this.event_service.analizeEvent(person);
   }
 
   inlineSave(person: Person){

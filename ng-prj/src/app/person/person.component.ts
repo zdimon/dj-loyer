@@ -14,7 +14,7 @@ export class PersonComponent implements OnInit {
   isListHidden: boolean = false;
   isFormHidden: boolean = true;
   isSearchHidden: boolean = false;
-
+  isAnalizeHidden: boolean = false;
 
   constructor(private event_service: PersonEventService, private ui_service: UiService) { }
 
@@ -26,15 +26,22 @@ export class PersonComponent implements OnInit {
       this.isFormHidden = false;
       this.isListHidden = true;
       this.isSearchHidden = true;
+      this.isAnalizeHidden = true;
     });
 
     this.event_service.listSubscriber$.subscribe(() => {
       this.isFormHidden = true;
       this.isListHidden = false;
       this.isSearchHidden = false;
+      this.isAnalizeHidden = true;
     });
 
-
+    this.event_service.analizeSubscriber$.subscribe(() => {
+      this.isFormHidden = true;
+      this.isListHidden = true;
+      this.isSearchHidden = true;
+      this.isAnalizeHidden = false;
+    });
 
   }
 

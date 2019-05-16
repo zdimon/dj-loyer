@@ -6,11 +6,12 @@ import { FormComponent } from './form/form.component';
 import { PersonService } from './form/service';
 import { SharedModule } from '../shared.module';
 import { SearchComponent } from './search/search.component';
+import { AnalizeComponent } from './analize/analize.component';
 
 
 
 @NgModule({
-  declarations: [PersonComponent, ListComponent, FormComponent, SearchComponent],
+  declarations: [PersonComponent, ListComponent, FormComponent, SearchComponent, AnalizeComponent],
   imports: [
     CommonModule,
     SharedModule

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs/Rx";
+import { Person } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,14 @@ export class PersonEventService {
   private _search_emmiter = new Subject();
   searchSubscriber$ = this._search_emmiter.asObservable();
 
+  private _analize_emmiter = new Subject();
+  analizeSubscriber$ = this._analize_emmiter.asObservable();
+
   constructor() { }
 
+  analizeEvent(person: Person){
+    this._analize_emmiter.next(person);
+  }
 
   showListEvent(flag: boolean){
     this._list_emmiter.next(flag);

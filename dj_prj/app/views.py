@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from app.models import MainDocuments, Person, Company, City, Role
+from app.models import MainDocuments, Person, Company, City, Role, Person2Company
 from app.serializer import DocumentSerializer, PersonSerializer, CompanySerializer, CitySerializer, RoleSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -23,7 +23,19 @@ class SerchDocumentList(generics.ListAPIView):
         for item in arrkey:
             q_objects.add(Q(search_field__icontains=item), Q.AND)
         return MainDocuments.objects.filter(q_objects)
-   
+
+class NamesakeList(generics.ListAPIView):
+    serializer_class = PersonSerializer
+    def get_queryset(self):  
+        key = self.kwargs['key']
+        return Person.objects.filter(surname_ru=key)
+
+class CompanySearchByPersonIdList(generics.ListAPIView):
+    serializer_class = CompanySerializer
+    def get_queryset(self):  
+        person_id = self.kwargs['person_id']
+        return Company.objects.filter(person2company__person_id=person_id)
+
 class SerchPersonList(generics.ListAPIView):
     serializer_class = PersonSerializer
     def get_queryset(self):

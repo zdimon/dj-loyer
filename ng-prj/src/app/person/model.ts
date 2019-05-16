@@ -11,6 +11,7 @@ export class Person {
   first_name_lat: string;
   last_name_lat: string;
   surname_lat: string;
+  full_name_ru: string;
   role: string;
   birth: string;
   inn: string;

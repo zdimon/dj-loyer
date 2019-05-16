@@ -28,8 +28,9 @@
     <tr  [ngClass]="{'table-danger': person.id==current}" class="table_row" *ngFor="let person of persons" >
       <td>
         <span class="oi oi-pencil" (click)="onEdit(person)"></span>
-        <button [hidden]="person.is_edit" (click)="onEdit(person)" class="btn btn-success">Редактировать</button>
-        <button [hidden]="!person.is_edit" (click)="inlineSave(person)" class="btn btn-success">Сохранить</button>
+        <button [hidden]="person.is_edit" (click)="analize(person)" class="btn btn-success btn-block my-2">Анализ</button>
+        <button [hidden]="person.is_edit" (click)="onEdit(person)" class="btn btn-success btn-block">Редактировать</button>
+        <button [hidden]="!person.is_edit" (click)="inlineSave(person)" class="btn btn-success btn-block">Сохранить</button>
         <button [hidden]="!person.is_edit" (click)="exit(person)" class="btn btn-danger my-1">Отменить</button>
       </td>
       <td>

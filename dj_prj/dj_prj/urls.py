@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from app.views import PersonViewSet, DocumentViewSet, LoginView, registration, SerchDocumentList, CompanyViewSet, CityViewSet, RoleViewSet, SerchPersonList
+from app.views import PersonViewSet, DocumentViewSet, LoginView, registration, SerchDocumentList, CompanyViewSet, CityViewSet, RoleViewSet, SerchPersonList, NamesakeList, CompanySearchByPersonIdList
 
 router = routers.DefaultRouter()
 router.register(r'documents', DocumentViewSet)
@@ -17,6 +17,8 @@ cache_registry.autodiscover()
 urlpatterns = [
     path('api/login', LoginView.as_view()),
     path('api/documents_search/<str:key>', SerchDocumentList.as_view()),
+    path('api/namesake_search/<str:key>', NamesakeList.as_view()),
+    path('api/company_search/<int:person_id>', CompanySearchByPersonIdList.as_view()),
     path('api/person_search/<str:fio>/<str:role>/<str:birth>', SerchPersonList.as_view()),
     path('api/register', registration),
     path('api/', include(router.urls)),
