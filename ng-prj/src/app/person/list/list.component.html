@@ -75,10 +75,10 @@
           </div>
           <div [hidden]="person.is_edit">
               ИНН: {{ person.inn  }}
-          </div>   
+          </div>
           <div [hidden]="person.is_edit">
               Дата рождения: {{ person.birth  }}
-          </div>         
+          </div>
         <select  placeholder="должность"  [hidden]="!person.is_edit"  [(ngModel)]="person.roleperson_id"  class="form-control form-control-sm" name="role" required>
             <option *ngFor="let role of roles" [value]="role.id">{{role.name_ru}}</option>
           </select>

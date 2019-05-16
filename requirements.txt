@@ -7,3 +7,4 @@ django-cors-headers
 python_slugify==1.2.4
 bs4
 requests
+rest-framework-cache

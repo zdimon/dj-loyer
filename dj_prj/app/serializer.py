@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from app.models import MainDocuments, Person, Company, Person2Company, City, Role
-
+from rest_framework_cache.registry import cache_registry
 
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -63,3 +63,9 @@ class CompanySerializer(serializers.ModelSerializer):
         model = Company
         fields = ['name_ru', 'name_kz', 'city', 'city_id', 'faunders', 'bin', 'id']
         depth = 1
+
+
+cache_registry.register(RoleSerializer)
+cache_registry.register(CitySerializer)
+cache_registry.register(PersonSerializer)
+cache_registry.register(CompanySerializer)

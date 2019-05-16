@@ -11,6 +11,9 @@ router.register(r'cities', CityViewSet)
 router.register(r'role', RoleViewSet)
 #router.register(r'documents_search/(?P<key>.+)', SerchDocumentList.as_view(), base_name='documents_search')
 
+from rest_framework_cache.registry import cache_registry
+cache_registry.autodiscover()
+
 urlpatterns = [
     path('api/login', LoginView.as_view()),
     path('api/documents_search/<str:key>', SerchDocumentList.as_view()),

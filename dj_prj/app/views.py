@@ -8,6 +8,7 @@ import json
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
+from django.views.decorators.cache import cache_page
 
 
 from rest_framework import generics
