@@ -35,7 +35,7 @@ class Command(BaseCommand):
                     pass
                     #print(str(e))
                 
-                match = re.search('Ответчики по делу:(.*)Судья:',md.title)
+                match = re.search(': (.*)Судья:',md.title)
                 try:
                     rezult = match.group(1)   
                     for nm in rezult.split(','):

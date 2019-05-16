@@ -18,13 +18,13 @@ export class PersonService {
         this.alert.success('Персона создана.');
         this.event_service.showListEvent(true);
         this.event_service.updateListEvent();
-      },() => {alert('Error')});
+      },() => {alert('Ошибка сохранения')});
     } else {
       return this.http.put(API_URL+'api/persons/'+person.id+'/',person).subscribe(res =>{
         this.alert.success('Персона сохранена.');
         this.event_service.showListEvent(true);
         this.event_service.updateListEvent();
-      },() => {alert('Error')});
+      },() => {alert('Ошибка сохранения')});
     }
 
   }

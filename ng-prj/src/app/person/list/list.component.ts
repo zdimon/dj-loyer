@@ -60,6 +60,7 @@ export class ListComponent implements OnInit {
     });
     //pager
     this.pager.subscriber$.subscribe((page: number) => {
+      this.persons = [];
       this.getPersonList(page);
       this.isPagerHidden = false;
     });
