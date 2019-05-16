@@ -12,6 +12,7 @@
 ### Устанавливаем зависимости.
 
     npm install
+    sudo npm install -g @angular/cli
     
 ### Копируем настройки
 
